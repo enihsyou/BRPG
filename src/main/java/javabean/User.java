@@ -8,11 +8,11 @@ import dao.AccountDao;
 public class User {
     private String userID;
     private String password;
-    private boolean advancedPermission;
+    private boolean advancedPermission=false;
     private String userName;
-    private String signature;
+    private String signature="";
     private int score;
-    private String headPortrait;
+    private String headPortrait="";
     private Collection collection;
 
     public boolean login(String userID,String password){
@@ -30,6 +30,32 @@ public class User {
             headPortrait=account.getHeadPortrait();
             collection=dao.readCollection(userID);
             return true;
+        }
+    }
+
+    public boolean register(String userID,String password,String userName){
+        AccountDao dao=new AccountDao();
+        return dao.writeAccount(userID,password,userName);
+    }
+
+    public boolean changeInfo(String userName,String signature){
+        AccountDao dao=new AccountDao();
+        if (dao.changeInfo(userID,userName,signature)){
+            this.userName=userName;
+            this.signature=signature;
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean changePw(String password){
+        AccountDao dao=new AccountDao();
+        if (dao.changePw(userID,password)){
+            this.password=password;
+            return true;
+        }else {
+            return false;
         }
     }
 
