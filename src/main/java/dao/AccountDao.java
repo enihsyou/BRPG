@@ -3,18 +3,26 @@ package dao;
 import javabean.Collection;
 import javabean.User;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * 账户管理子系统
  */
 public class AccountDao extends BaseDao {
     //读取账户信息
     public User readAccount(String userID){
+
         return null;
     }
     //读取用户收藏
     public Collection readCollection(String userID){
         return null;
     }
+    //写入收藏
+    public boolean setCollection(String userID, String gameID){return true;}
+
     //写入新账户
     public boolean writeAccount(String userID,String password,String userName){
         return false;
