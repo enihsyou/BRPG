@@ -7,6 +7,18 @@ public class Game {
     private String image;
     private float averageScore;
     private GameCommentList gameCommentList;
+    private GameScoreList gameScoreList;
+
+
+    public GameScoreList getGameScoreList() {
+        return gameScoreList;
+    }
+
+    public void setGameScoreList(GameScoreList gameScoreList) {
+        this.gameScoreList = gameScoreList;
+    }
+
+
 
     public String getGameID() {
         return gameID;
