@@ -22,7 +22,7 @@ public class PostServlet extends BaseServlet {
     /**
      * 按类型获取帖子列表
      * @param req 参数:type
-     * @param res
+     * @param res 返回List<Post>对象的Json
      * @throws Exception
      */
     public void getPostList(HttpServletRequest req, HttpServletResponse res)throws Exception{
@@ -31,14 +31,13 @@ public class PostServlet extends BaseServlet {
         List<Post> postList=dao.readPostList(type);
         Gson gson=new Gson();
         String postListJson=gson.toJson(postList);
-        res.setContentType("text/html;utf-8");
         res.getWriter().write(postListJson);
     }
 
     /**
      * 读帖子详情
      * @param req 参数:postID
-     * @param res
+     * @param res 返回Post对象的Json
      * @throws Exception
      */
     public void getPostInfo(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -47,7 +46,6 @@ public class PostServlet extends BaseServlet {
         Post post=dao.readPostDetails(postID);
         Gson gson=new Gson();
         String postJson=gson.toJson(post);
-        res.setContentType("text/html;utf-8");
         res.getWriter().write(postJson);
     }
 
@@ -80,7 +78,7 @@ public class PostServlet extends BaseServlet {
     /**
      * 帖子评论
      * @param req 参数：content,postID
-     * @param res
+     * @param res 返回PostComment对象的Json
      * @throws Exception
      */
     public void postComment(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -98,7 +96,6 @@ public class PostServlet extends BaseServlet {
             //评论成功则返回评论对象
             Gson gson=new Gson();
             String postCommentJson=gson.toJson(postComment);
-            res.setContentType("text/html;utf-8");
             res.getWriter().write(postCommentJson);
         }else {
             res.getWriter().write("0");

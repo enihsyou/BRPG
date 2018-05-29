@@ -22,7 +22,7 @@ public class GameServlet extends BaseServlet {
     /**
      * 读游戏列表并返回json
      * @param req
-     * @param res
+     * @param res 返回List<Game>对象的Json
      * @throws Exception
      */
     public void getGameList(HttpServletRequest req, HttpServletResponse res)throws Exception{
@@ -30,14 +30,13 @@ public class GameServlet extends BaseServlet {
         List<Game> gameList=dao.readGameList();
         Gson gson=new Gson();
         String gameListJson=gson.toJson(gameList);
-        res.setContentType("text/html;utf-8");
         res.getWriter().write(gameListJson);
     }
 
     /**
      * 读游戏列表并以评分高低排列
      * @param req
-     * @param res
+     * @param res 返回List<Game>对象的Json
      * @throws Exception
      */
     public void getGameListByOrder(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -58,14 +57,13 @@ public class GameServlet extends BaseServlet {
         gameList.sort(comparator);
         Gson gson=new Gson();
         String gameListJson=gson.toJson(gameList);
-        res.setContentType("text/html;utf-8");
         res.getWriter().write(gameListJson);
     }
 
     /**
      * 获取游戏详情
      * @param req 参数：gameID
-     * @param res
+     * @param res 返回Game对象的Json
      * @throws Exception
      */
     public void getGameInfo(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -74,14 +72,13 @@ public class GameServlet extends BaseServlet {
         Game game=dao.readGameDetails(gameID);
         Gson gson=new Gson();
         String gameJson=gson.toJson(game);
-        res.setContentType("text/html;utf-8");
         res.getWriter().write(gameJson);
     }
 
     /**
      * 游戏评论
      * @param req 参数：content,gameID
-     * @param res
+     * @param res 返回GameComment对象的Json
      * @throws Exception
      */
     public void gameComment(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -99,11 +96,9 @@ public class GameServlet extends BaseServlet {
             //评论成功
             Gson gson=new Gson();
             String gameCommentJson=gson.toJson(gameComment);
-            res.setContentType("text/html;utf-8");
             res.getWriter().write(gameCommentJson);
         }else {
             //评论失败,返回0
-            res.setContentType("text/html;utf-8");
             res.getWriter().write("0");
         }
     }

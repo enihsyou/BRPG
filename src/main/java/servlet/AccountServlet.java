@@ -86,7 +86,7 @@ public class AccountServlet extends BaseServlet{
     /**
      * 收藏游戏
      * @param req 参数：gameID
-     * @param res
+     * @param res 返回1表示操作成功，返回0表示操作失败
      * @throws Exception
      */
     public void setCollection(HttpServletRequest req,HttpServletResponse res)throws Exception{
@@ -95,11 +95,9 @@ public class AccountServlet extends BaseServlet{
         AccountDao dao=new AccountDao();
         if (dao.setCollection(user.getUserID(),gameID)){
             //收藏成功
-            res.setContentType("text/html;utf-8");
             res.getWriter().write("1");
         }else {
             //收藏失败
-            res.setContentType("text/html;utf-8");
             res.getWriter().write("0");
         }
     }
