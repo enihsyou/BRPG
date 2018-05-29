@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 处理用户账户有关的请求，需要传入method参数执行对应的方法
+ */
 @WebServlet(name = "account",urlPatterns = "/account")
 public class AccountServlet extends BaseServlet{
     /**

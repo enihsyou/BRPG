@@ -14,6 +14,9 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 处理游戏相关的请求
+ */
 @WebServlet(name = "game",urlPatterns = "/game")
 public class GameServlet extends BaseServlet {
     /**

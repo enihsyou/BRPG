@@ -1,9 +1,12 @@
 package javabean;
 
+/**
+ * 帖子评论类
+ */
 public class PostComment {
-    private User commentator;
-    private String content;
-    private String time;
+    private User commentator;//评论人
+    private String content;//评论内容
+    private String time;//评论时间
 
     public User getCommentator() {
         return commentator;

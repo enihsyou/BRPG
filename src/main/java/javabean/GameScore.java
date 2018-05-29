@@ -1,8 +1,11 @@
 package javabean;
 
+/**
+ * 游戏评分类（单个用户评分）
+ */
 public class GameScore {
-    private User user;
-    private int score;
+    private User user;//评分的用户
+    private int score;//评分1，2,3,4,5
 
     public User getUser() {
         return user;

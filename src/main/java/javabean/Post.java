@@ -1,12 +1,15 @@
 package javabean;
 
+/**
+ * 帖子类
+ */
 public class Post {
-    protected String postID;
-    protected User writer;
-    protected String type;
-    protected String title;
-    protected String content;
-    protected PostCommentList postCommentList;
+    protected String postID;//帖子ID
+    protected User writer;//发帖用户
+    protected String type;//帖子类型，新闻news,公告announcement,问答qa,攻略strategy,同人fanswork
+    protected String title;//标题
+    protected String content;//内容
+    protected PostCommentList postCommentList;//帖子评论集
 
     public String getPostID() {
         return postID;
