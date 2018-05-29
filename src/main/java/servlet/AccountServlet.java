@@ -1,5 +1,6 @@
 package servlet;
 
+import dao.AccountDao;
 import javabean.User;
 
 import javax.servlet.annotation.WebServlet;
@@ -76,6 +77,27 @@ public class AccountServlet extends BaseServlet{
             req.getSession().setAttribute("user",user);
         }else {
             //修改失败
+        }
+    }
+
+    /**
+     * 收藏游戏
+     * @param req 参数：gameID
+     * @param res
+     * @throws Exception
+     */
+    public void setCollection(HttpServletRequest req,HttpServletResponse res)throws Exception{
+        User user= (User) req.getSession().getAttribute("user");
+        String gameID=req.getParameter("gameID");
+        AccountDao dao=new AccountDao();
+        if (dao.setCollection(user.getUserID(),gameID)){
+            //收藏成功
+            res.setContentType("text/html;utf-8");
+            res.getWriter().write("1");
+        }else {
+            //收藏失败
+            res.setContentType("text/html;utf-8");
+            res.getWriter().write("0");
         }
     }
 }
