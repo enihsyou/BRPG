@@ -3,6 +3,7 @@
     <head>
         <title>游戏仓库</title>
         <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script src="http://mockjs.com/dist/mock.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
     </head>
     <script>
@@ -43,14 +44,19 @@
         });
     </script>
     <body>
-        <div id="piclist">
+        <frameset id="container">
+            <frame id="header" src="header.jsp">
+            <frame id="gamelist" src="gamelist.jsp">
+            <frame id="footer" src="footer.jsp">
+        <!--<div id="piclist">
 
         <ul id="listul">
         </ul>
         <div class="fydiv">
             <ul class="fenye"></ul>
-        </div>
+        </div>  -->
 
-        </div>
+
+        </frameset>
     </body>
 </html>
