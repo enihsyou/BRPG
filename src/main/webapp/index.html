@@ -2,66 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>修仙娱乐</title>
 
-    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
-    <style>
-
-        /* Style for our header texts
-        * --------------------------------------- */
-        h1{
-            font-size: 5em;
-            font-family: arial,helvetica;
-            color: #fff;
-            margin:0;
-        }
-        .intro p{
-            color: #fff;
-        }
-
-        /* Centered texts in each section
-        * --------------------------------------- */
-        .section{
-            text-align:center;
-        }
-
-        /* Overwriting styles for control arrows for slides
-        * --------------------------------------- */
-        .controlArrow.prev {
-            left: 500px;
-        }
-        .controlArrow.next{
-            right: 500px;
-        }
-
-        /* Fixed header and footer.
-        * --------------------------------------- */
-        #header, #footer{
-            position:fixed;
-            height: 50px;
-            display:block;
-            width: 100%;
-            background: transparent;
-            z-index:9;
-            text-align:center;
-            color: #f2f2f2;
-            padding: 20px 0 0 0;
-        }
-
-        #header{
-            top:0px;
-        }
-        #footer{
-            bottom:0px;
-        }
-
-
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css"/>
     <!--[if IE]>
     <script type="text/javascript">
-        var console = { log: function() {} };
+        var console = {
+            log: function () {
+            }
+        };
     </script>
     <![endif]-->
 
@@ -73,7 +23,7 @@
     <script type="text/javascript" src="js/jquery.fullPage.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#fullpage').fullpage({
                 anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
                 sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#ff6968'],
@@ -84,12 +34,151 @@
             });
         });
     </script>
+    <style>
+        * {
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+        }
+
+        /* Style for our header texts
+        * --------------------------------------- */
+        h1 {
+            font-size: 5em;
+            font-family: arial, helvetica;
+            color: #fff;
+            margin: 0;
+        }
+
+        .intro p {
+            color: #fff;
+        }
+
+        /* Centered texts in each section
+        * --------------------------------------- */
+        .section {
+            text-align: center;
+        }
+
+        /* Overwriting styles for control arrows for slides
+        * --------------------------------------- */
+        .fp-controlArrow.fp-prev {
+            left: 35px;
+        }
+
+        .fp-controlArrow.fp-next {
+            right: 35px;
+        }
+
+        /* Fixed header and footer.
+        * --------------------------------------- */
+        #header, #footer {
+            position: fixed;
+            height: 70px;
+            display: block;
+            width: 100%;
+            background: #333; /*TODO 透明header&footer 暂时填充#333*/
+            z-index: 9;
+            text-align: center;
+            color: #f2f2f2;
+            padding: 0 0 0 0;
+        }
+
+        #header {
+            /*justify-content: space-around;*/
+            /*flex-direction: row;*/
+            /*align-items: center;*/
+            display: grid;
+            grid-template-columns: 1fr repeat(1, auto) 1fr;
+            grid-column-gap: 10px;
+            justify-items: center;
+            top: 0px;
+        }
+
+        #footer {
+            bottom: 0px;
+        }
+
+        /* header elements
+        * --------------------------------------- */
+
+        #header {
+            display: grid;
+            grid-template-columns: 1fr repeat(1, auto) 1fr;
+            align-content: center;
+        }
+
+        #header-center {
+            grid-column-start: 2;
+            text-align: center;
+            display: flex;
+        }
+
+        #header-center div {
+            margin: 0 1em;
+        }
+
+        #header-right {
+            margin-left: auto;
+            margin-right: 2em;
+            display: flex;
+        }
+
+        #header-right div {
+            margin: 0 1em;
+        }
+
+        /* footer elements
+       * --------------------------------------- */
+
+        #footer {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-content: end;
+        }
+
+        #footer-left {
+            grid-column-start: 1;
+            text-align: center;
+            display: flex;
+            margin-left: 3em;
+        }
+
+
+        #footer-right {
+            margin-left: auto;
+            margin-right: 2em;
+            justify-content: space-around;
+        }
+
+        #footer-right a {
+            margin: 0 2em;
+        }
+
+
+    </style>
 
 </head>
 <body>
 
-    <div id="header">Header</div>
-    <div id="footer">Footer</div>
+    <div id="header">
+        <div id="header-center">
+            <div>游戏仓库</div>
+            <div>修仙娱乐</div>     <!--最好用logo代替-->
+            <div>社区中心</div>
+        </div>
+        <div id="header-right">
+            <div>登录</div>
+            <div>注册</div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-left">联系我们 ©️ 2018 修仙娱乐</div>
+        <div id="footer-right">
+            <a>使用指南</a>
+            <a>商业合作</a>
+            <a>隐私政策</a>
+        </div>
+
+    </div>
 
     <div id="fullpage">
         <div class="section" id="section0">
