@@ -3,18 +3,24 @@ package javabean;
 import dao.AccountDao;
 
 /**
- * 用户model，封装属性和方法实现
+ * 用户类，封装属性和方法实现
  */
 public class User {
-    private String userID;
-    private String password;
-    private boolean advancedPermission=false;
-    private String userName;
-    private String signature="";
-    private int score;
-    private String headPortrait="";
-    private Collection collection;
+    private String userID;//用户ID
+    private String password;//用户密码
+    private boolean advancedPermission=false;//
+    private String userName;//用户昵称
+    private String signature="";//个签
+    private int score;//积分
+    private String headPortrait="";//头像路径
+    private Collection collection;//用户的游戏收藏类
 
+    /**
+     * 登录
+     * @param userID
+     * @param password
+     * @return
+     */
     public boolean login(String userID,String password){
         AccountDao dao=new AccountDao();
         User account=dao.readAccount(userID);
@@ -33,11 +39,24 @@ public class User {
         }
     }
 
+    /**
+     * 注册
+     * @param userID
+     * @param password
+     * @param userName
+     * @return
+     */
     public boolean register(String userID,String password,String userName){
         AccountDao dao=new AccountDao();
         return dao.writeAccount(userID,password,userName);
     }
 
+    /**
+     * 修改个人信息
+     * @param userName
+     * @param signature
+     * @return
+     */
     public boolean changeInfo(String userName,String signature){
         AccountDao dao=new AccountDao();
         if (dao.changeInfo(userID,userName,signature)){
@@ -49,6 +68,11 @@ public class User {
         }
     }
 
+    /**
+     * 修改密码
+     * @param password
+     * @return
+     */
     public boolean changePw(String password){
         AccountDao dao=new AccountDao();
         if (dao.changePw(userID,password)){

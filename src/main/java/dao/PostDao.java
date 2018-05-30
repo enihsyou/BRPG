@@ -4,6 +4,8 @@ import javabean.GameComment;
 import javabean.Post;
 import javabean.PostComment;
 
+import java.util.List;
+
 public class PostDao extends BaseDao {
     //读帖子列表（除了内容、评论）
     public List<Post> readPostList(String type){return null;}

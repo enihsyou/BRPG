@@ -1,13 +1,16 @@
 package javabean;
 
+/**
+ * 游戏类
+ */
 public class Game {
-    private String gameID;
-    private String gameName;
-    private String synopsis;
-    private String image;
-    private float averageScore;
-    private GameCommentList gameCommentList;
-    private GameScoreList gameScoreList;
+    private String gameID;//游戏ID
+    private String gameName;//游戏名
+    private String synopsis;//简介
+    private String image;//图片路径
+    private float averageScore;//游戏评分（综合）
+    private GameCommentList gameCommentList;//游戏评论集
+    private GameScoreList gameScoreList;//游戏评分集（每一个用户的评分）
 
 
     public GameScoreList getGameScoreList() {

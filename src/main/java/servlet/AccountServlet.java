@@ -1,11 +1,15 @@
 package servlet;
 
+import dao.AccountDao;
 import javabean.User;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 处理用户账户有关的请求，需要传入method参数执行对应的方法
+ */
 @WebServlet(name = "account",urlPatterns = "/account")
 public class AccountServlet extends BaseServlet{
     /**
@@ -76,6 +80,25 @@ public class AccountServlet extends BaseServlet{
             req.getSession().setAttribute("user",user);
         }else {
             //修改失败
+        }
+    }
+
+    /**
+     * 收藏游戏
+     * @param req 参数：gameID
+     * @param res 返回1表示操作成功，返回0表示操作失败
+     * @throws Exception
+     */
+    public void setCollection(HttpServletRequest req,HttpServletResponse res)throws Exception{
+        User user= (User) req.getSession().getAttribute("user");
+        String gameID=req.getParameter("gameID");
+        AccountDao dao=new AccountDao();
+        if (dao.setCollection(user.getUserID(),gameID)){
+            //收藏成功
+            res.getWriter().write("1");
+        }else {
+            //收藏失败
+            res.getWriter().write("0");
         }
     }
 }
