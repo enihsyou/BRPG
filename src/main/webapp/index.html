@@ -19,14 +19,13 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="js/scrolloverflow.js"></script>
-
     <script type="text/javascript" src="js/jquery.fullPage.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
-                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#ff6968'],
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage'],
+                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#ff6968', '#ffeb79'],
                 css3: true,
                 navigation: true,
                 navigationPosition: 'right',
@@ -45,7 +44,8 @@
             font-size: 5em;
             font-family: arial, helvetica;
             color: #fff;
-            margin: 0;
+            position: absolute;
+            margin: 100px 100px;
         }
 
         .intro p {
@@ -75,7 +75,7 @@
             height: 70px;
             display: block;
             width: 100%;
-            background: #333; /*TODO 透明header&footer 暂时填充#333*/
+            background: transparent;
             z-index: 9;
             text-align: center;
             color: #f2f2f2;
@@ -135,6 +135,10 @@
             align-content: end;
         }
 
+        #footer div {
+            margin-bottom: 0.5em;
+        }
+
         #footer-left {
             grid-column-start: 1;
             text-align: center;
@@ -151,6 +155,22 @@
 
         #footer-right a {
             margin: 0 2em;
+        }
+
+        /* style for section 1
+       * --------------------------------------- */
+        .background-img {
+            width: 100%;
+        }
+
+        /* style for section 2
+        * --------------------------------------- */
+        #vertically-half {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        #vertically-half div {
         }
 
 
@@ -182,27 +202,29 @@
 
     <div id="fullpage">
         <div class="section" id="section0">
-            <div class="slide" id="slide1">
+            <div class="slide" id="slide1" data-anchor="slide1">
                 <div class="intro">
-                    <h1>Clickable</h1>
-                    <p>
-                        You can even click on the navigation and jump directly to another section.
-                    </p>
+                    <h1>图片测试</h1>
+                    <img class="background-img" src="assets/pascal-swier-144672-unsplash.jpg" alt="test"/>
                 </div>
             </div>
 
-            <div class="slide" id="slide2">
+            <div class="slide" id="slide2" data-anchor="slide2">
                 <h1>Slide 2</h1>
             </div>
-        </div>
-        <div class="section" id="section1">
-            <div class="intro">
-                <h1>Navigation dots</h1>
-                <p>An easy and beautiful way to navigate throw the sections</p>
+
+            <div class="slide" id="slide3" data-anchor="slide3">
+                <h1>Slide 3</h1>
             </div>
-
-
         </div>
+
+        <div class="section" id="section1">
+            <div class="intro" id="vertically-half">
+                <div>left</div>
+                <div>right</div>
+            </div>
+        </div>
+
         <div class="section" id="section2">
             <div class="intro">
                 <h1>Enjoy it</h1>
@@ -215,9 +237,28 @@
             </div>
         </div>
 
-
     </div>
 
 
 </body>
+<script>
+    /*
+    使元素的尺寸根据窗体大小改变
+     */
+    // global vars
+    var winHeight = $(window).height();
+
+    // set initial div height / width
+    $('#vertically-half div').css({
+        'height': winHeight - 140
+    });
+
+    // make sure div stays full width/height on resize
+    $(window).resize(function(){
+        var winHeight = $(window).height();
+        $('#vertically-half div').css({
+            'height': winHeight - 140
+        });
+    });
+</script>
 </html>
