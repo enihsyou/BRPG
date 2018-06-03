@@ -3,13 +3,53 @@
     <head>
         <title>游戏仓库</title>
         <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/xhdata.js"></script>
+        <script type="text/javascript" src="js/jquery.pagination.js"></script>
         <script src="http://mockjs.com/dist/mock.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
+        <link rel="stylesheet" type="text/css" href="css/pagination.css" />
+
     </head>
-    <!--<script>
+    <script type="text/javascript">
+        //调用mock方法模拟数据
+        Mock.mock(
+            'http://mockjs', {
+                "gameName" : '@name',     //模拟名称
+                "image":'@image',          //模拟游戏图片
+                "averageScore|1-10":10,    //模拟评分（1-10）
+            }
+        );
+
+        //ajax请求
+        $(function(){
+            $.ajax({
+                url        : "http://mockjs",    //请求的url地址
+                dataType   : "json",   //返回格式为json
+                async      : true, //请求是否异步，默认为异步，这也是ajax重要特性
+                data       : {},    //参数值
+                type       : "GET",   //请求方式
+                beforeSend : function() {
+                    //请求前的处理
+                },
+                success: function(req) {
+                    //请求成功时处理
+                    alert(req);
+                    console.log(req);
+                },
+                complete: function() {
+                    //请求完成的处理
+                },
+                error: function() {
+                    //请求出错处理
+                    alert("error!");
+                }
+            });
+        });
+    </script>
+    <script>
         $(function () {
             $.ajax({
-                url: 'game',
+                url: 'http://127.0.0.1:8080/brpg/game',
                 type: 'GET',
                 dataType: 'json',
                 timeout: 1000,
@@ -42,21 +82,18 @@
                 });
             }
         });
-    </script>  -->
+    </script>
     <body>
-        <frameset id="container">
-            <frame id="header" src="header.html">
-            <frame id="gamelist" src="#">
-            <frame id="footer" src="footer.html">
-        <!--<div id="piclist">
+        <div id="piclist">
 
         <ul id="listul">
         </ul>
-        <div class="fydiv">
-            <ul class="fenye"></ul>
-        </div>  -->
+            <div class="clear"></div>
+            <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            <ul id="Searchresult" style="display:none;">
+            </ul>
 
+        </div>
 
-        </frameset>
     </body>
 </html>
