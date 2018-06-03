@@ -5,9 +5,12 @@
         <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="js/xhdata.js"></script>
         <script type="text/javascript" src="js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
         <script src="http://mockjs.com/dist/mock.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
         <link rel="stylesheet" type="text/css" href="css/pagination.css" />
+        <link rel="stylesheet" type="text/css" href="css/grade.css" />
+        <link rel="stylesheet" type="text/css" href="css/gamelist.css" />
 
     </head>
     <script type="text/javascript">
@@ -35,9 +38,9 @@
                     //请求成功时处理
                     console.log(req);
                     //打印json中的value
-                    $.each(req, function(i) {
+                    /*$.each(req, function(i) {
                         document.writeln(req[i] + '<br>');
-                    });
+                    }); */
 
                 },
                 complete: function() {
@@ -88,16 +91,62 @@
         });
     </script>
     <body>
-        <div id="piclist">
+
+    <div id="cen_right_top">
+        <h3>默认</h3>
+        <h3 class="active">按评分</h3>
+        <div class="mainleft2" style="display:block">
+            <dl>
+                <dt>迷失岛<span>评分：9分</span></dt>
+                <dd class="dd0"><a href="#"><img src="assets/img1.jpg" alt="为雅安同胞祈祷"></a></dd>
+                <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+                <dd class="dd2"><a href="#">查看详情</a></dd>
+            </dl>
+            <dl>
+                <dt>猫忍之心<span>评分：7分</span></dt>
+                <dd class="dd0"><a href="#"><img src="assets/img2.jpg" alt="更新提前"></a></dd>
+                <dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+                <dd class="dd2"><a href="#">查看详情</a></dd>
+            </dl>
+            <dl>
+                <dt>嗜血代码<span>评分：9分</span></dt>
+                <dd class="dd0"><a href="#"><img src="assets/i2.jpg" alt="支援灾区"></a></dd>
+                <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+                <dd class="dd2"><a href="#">查看详情</a></dd>
+            </dl>
+            <dl>
+                <dt>穷追不舍<span>评分：9分</span></dt>
+                <dd class="dd0"><a href="#"><img src="assets/1368022916_1719592020_22615_imageAddr.jpg" alt="停机更新"></a></dd>
+                <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+                <dd class="dd2"><a href="#">查看详情</a></dd>
+            </dl>
+            <dl>
+                <dt>杀手谜题<span>评分：8分</span></dt>
+                <dd class="dd0"><a href="#"><img src="assets/1367250767_1719592020_345_imageAddr.jpg" alt="测试延期"></a></dd>
+                <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+                <dd class="dd2"><a href="#">查看详情</a></dd>
+            </dl>
+        </div>
+    </div>
+    <br/><br><br>
+    <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+    <ul id="Searchresult" style="display:none;">
+    </ul>
+
+    <!--<div style="display:block">默认的内容</div>
+        <div>按评分的内容</div>
+    </div>  -->
+
+    <!--<div id="piclist">
 
         <ul id="listul">
         </ul>
             <div class="clear"></div>
             <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
-            <ul id="Searchresult" style="display:none;">
+           <!-- <ul id="Searchresult" style="display:none;">
             </ul>
 
-        </div>
+        </div> -->
 
     </body>
 </html>
