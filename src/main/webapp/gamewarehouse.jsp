@@ -6,7 +6,7 @@
         <script src="http://mockjs.com/dist/mock.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
     </head>
-    <script>
+    <!--<script>
         $(function () {
             $.ajax({
                 url: 'game',
@@ -42,12 +42,12 @@
                 });
             }
         });
-    </script>
+    </script>  -->
     <body>
         <frameset id="container">
-            <frame id="header" src="header.jsp">
-            <frame id="gamelist" src="gamelist.jsp">
-            <frame id="footer" src="footer.jsp">
+            <frame id="header" src="header.html">
+            <frame id="gamelist" src="#">
+            <frame id="footer" src="footer.html">
         <!--<div id="piclist">
 
         <ul id="listul">
