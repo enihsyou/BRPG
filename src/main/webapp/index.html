@@ -25,17 +25,25 @@
         $(document).ready(function () {
             $('#fullpage').fullpage({
                 anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage'],
-                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#ff6968', '#ffeb79'],
+                sectionsColor: ['#C63D0F', '#48bc6e', '#7E8F7C', '#ff6968', '#ffeb79'],
                 css3: true,
                 navigation: true,
                 navigationPosition: 'right',
-                navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth page']
+                navigationTooltips: ['首页', '玩家', '推荐', '其他']
             });
         });
     </script>
     <style>
         * {
             font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
         }
 
         /* Style for our header texts
@@ -46,6 +54,10 @@
             color: #fff;
             position: absolute;
             margin: 100px 100px;
+        }
+
+        .intro {
+            margin: 0 1em;
         }
 
         .intro p {
@@ -151,13 +163,15 @@
         }
 
         #footer-right a {
-            margin: 0 2em;
+            margin: 0 1em;
         }
 
         /* style for section 0
         * --------------------------------------- */
-
-
+        #slide1{
+            background-image: url("assets/pascal-swier-144672-unsplash.jpg");
+            background-size: cover;
+        }
 
         /* style for section 1
         * --------------------------------------- */
@@ -169,16 +183,63 @@
         #vertically-half div {
         }
 
+        #gamers-info {
+            display: grid;
+            grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #gamers-info div{
+            margin: 0 auto;
+        }
+
+
+        #gamers-info button{
+            grid-column: 1 / 3;
+            font-size: 16px;
+            width: 20em;
+            height: 3em;
+            justify-self: center;
+            border-radius: 1.5em;
+        }
+
+        #today-recommended {
+            display: grid;
+            grid-template-rows: 1fr 4fr 1fr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        #today-recommended div{
+
+        }
+
+        .game-card, button{
+            box-shadow: 0 10px 20px rgba(0,0,0,.25);
+        }
+
+        .game-card-large {
+            width: 500px;
+            height: 360px;
+            border-radius: 20px;
+            background-image: url("assets/esteban-lopez-478892-unsplash.jpg");
+            background-size: cover;
+        }
+
+
         /* style for section 2
        * --------------------------------------- */
         .three-columns {
+            display: grid;
             grid-template-columns: 1fr 2fr;
         }
 
-        #slide1{
-            background-image: url("assets/pascal-swier-144672-unsplash.jpg");
-            background-size: cover;
+        .three-columns div {
+
         }
+
     </style>
 
 </head>
@@ -199,7 +260,9 @@
         <div id="footer-left">联系我们 ©️ 2018 修仙娱乐</div>
         <div id="footer-right">
             <a>使用指南</a>
+            <span>·</span>
             <a>商业合作</a>
+            <span>·</span>
             <a>隐私政策</a>
         </div>
 
@@ -227,14 +290,29 @@
 
         <div class="section" id="section1">
             <div class="intro" id="vertically-half">
-                <div>left</div>
-                <div>right</div>
+                <div id="gamers-info">
+                    <div>平台所有玩家</div>
+                    <div>2</div>
+                    <div>当前在线人数</div>
+                    <div>4</div>
+                    <div>当前游戏中人数</div>
+                    <div>6</div>
+                    <button>立即加入</button>
+                </div>
+                <div id="today-recommended">
+                    <h2>今日推荐</h2>
+                    <div class="game-card game-card-large">
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="section" id="section2">
             <div class="intro three-columns">
-                <h1>Enjoy it</h1>
+                <div>
+                    <h2>Title</h2>
+                </div>
+                <div>games</div>
             </div>
         </div>
 
@@ -256,14 +334,14 @@
     var winHeight = $(window).height();
 
     // set initial div height / width
-    $('#vertically-half div').css({
+    $('#vertically-half > div, .three-columns div').css({
         'height': winHeight - 140
     });
 
     // make sure div stays full width/height on resize
     $(window).resize(function(){
         var winHeight = $(window).height();
-        $('#vertically-half div').css({
+        $('#vertically-half > div, .three-columns div').css({
             'height': winHeight - 140
         });
     });
