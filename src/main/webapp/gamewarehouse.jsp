@@ -33,8 +33,12 @@
                 },
                 success: function(req) {
                     //请求成功时处理
-                    alert(req);
                     console.log(req);
+                    //打印json中的value
+                    $.each(req, function(i) {
+                        document.writeln(req[i] + '<br>');
+                    });
+
                 },
                 complete: function() {
                     //请求完成的处理
