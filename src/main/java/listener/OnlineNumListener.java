@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSessionListener;
  * 监听在线人数，onlineNum属性存储在context中
  */
 @WebListener
-public class OnlineNum implements HttpSessionListener {
+public class OnlineNumListener implements HttpSessionListener {
     private int onlineNum;
 
     @Override
