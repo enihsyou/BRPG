@@ -1,11 +1,13 @@
 package servlet;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * 处理平台相关请求
  */
+@WebServlet(name = "platform",urlPatterns = "/platform")
 public class PlatformServlet extends BaseServlet{
     /**
      * 获取在线人数
