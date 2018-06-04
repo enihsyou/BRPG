@@ -85,7 +85,6 @@ public class AccountDao  {
         try {
             Object[] params = { password,userID };
             qr.update(sql,params);
-            //System.out.println(row);
         } catch (SQLException e) {
             return false;
         }

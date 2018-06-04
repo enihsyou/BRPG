@@ -25,7 +25,7 @@ public class GameDao {
         return gameList;
     }
 
-    //读游戏详情(ALL)
+    //读游戏详情
     public Game readGameDetails(String gameID) {
         Game game=null;
         String sql= "select * from game where Game_Id = ?";
@@ -44,7 +44,6 @@ public class GameDao {
         try {
             Object[] params = {gameScore.getScore(),userID,gameID};
             qr.update(sql,params);
-            //System.out.println(row);
         } catch (SQLException e) {
             return false;
         }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PostDao {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
-    //读帖子列表（除了内容、评论）
+    //读帖子列表（除内容、评论）
     public List<Post> readPostList(String type){
         List<Post> postList=new ArrayList<Post>();
         String sql = "SELECT Post_Id,Post_Title,User_Id FROM post where Post_Type=?";
