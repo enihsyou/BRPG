@@ -12,8 +12,12 @@ a,img{
     margin:40px auto 0 auto;
 }
 #cen_right_top .active{
-    background:no-repeat;
-    color:#87CEFA;
+    background:no-repeat #87CEFA;
+
+}
+#cen_right_top h3 .active{
+    color:black;
+
 }
 #cen_right_top h3{
     line-height:35px;
@@ -21,11 +25,12 @@ a,img{
     float:left;height:35px;
     width:182px;margin:0px;
     padding:0px;
-    background-color:#87CEFA;
     font-size:14px;
-    color:#333333;
     font-weight:lighter;
     cursor:pointer;
+}
+h3{
+    color:#87CEFA;
 }
 #cen_right_top div{
     font-size:14px;

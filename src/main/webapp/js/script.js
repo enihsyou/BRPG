@@ -4,10 +4,11 @@ window.onload=function()
 	var oTab=document.getElementById("cen_right_top");
 	var aH3=oTab.getElementsByTagName("h3");
 	var aDiv=oTab.getElementsByTagName("div");
+	//var aDiv=oTab.getElementsByClassName("btndiv");
 	for(var i=0;i<aH3.length;i++)
 	{
 		aH3[i].index=i;
-		aH3[i].onmouseover=function()
+        aH3[i].onclick=function()
 		{
 			for(var i=0;i<aH3.length;i++)
 			{

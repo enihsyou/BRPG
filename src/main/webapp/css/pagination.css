@@ -9,6 +9,7 @@
 	height: 34px;
 	clear: both;
 	padding-left: 280px;
+	postion: static;
 }
 .pagination A {
 	border-bottom: #aae 1px solid;

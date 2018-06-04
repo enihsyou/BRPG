@@ -92,10 +92,10 @@
     </script>
     <body>
 
-    <div id="cen_right_top">
-        <h3>默认</h3>
-        <h3 class="active">按评分</h3>
-        <div class="mainleft2" style="display:block">
+    <div id="cen_right_top" class="btndiv">
+        <h3 class="active">默认</h3>
+        <h3 >按评分</h3>
+        <div class="mainleft2 btndiv" style="display:block">
             <dl>
                 <dt>迷失岛<span>评分：9分</span></dt>
                 <dd class="dd0"><a href="#"><img src="assets/img1.jpg" alt="为雅安同胞祈祷"></a></dd>
@@ -127,6 +127,9 @@
                 <dd class="dd2"><a href="#">查看详情</a></dd>
             </dl>
         </div>
+        <div class="btndiv">
+            按评分的内容
+        </div>
     </div>
     <br/><br><br>
     <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
@@ -142,7 +145,7 @@
         <ul id="listul">
         </ul>
             <div class="clear"></div>
-            <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            <div id="Pagination" class="pagination"><!-- 这里显示分页 -->
            <!-- <ul id="Searchresult" style="display:none;">
             </ul>
 
