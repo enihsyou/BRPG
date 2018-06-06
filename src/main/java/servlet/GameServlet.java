@@ -92,7 +92,7 @@ public class GameServlet extends BaseServlet {
         gameComment.setContent(content);
         gameComment.setTime(time);
         GameDao dao=new GameDao();
-        if (dao.writeGameComment(gameID,gameComment)){
+        if (dao.writeGameComment(gameID,gameComment,user.getUserID())){
             //评论成功
             Gson gson=new Gson();
             String gameCommentJson=gson.toJson(gameComment);

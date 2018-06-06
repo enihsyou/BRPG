@@ -67,7 +67,7 @@ public class PostServlet extends BaseServlet {
         post.setType(type);
         PostDao dao=new PostDao();
         Post newPost=null;
-        if ((newPost=dao.writePost(post))!=null){
+        if (dao.writePost(post)){
             req.getSession().setAttribute("newPost",newPost);
             //TODO 跳转新帖子页面,可能有误，待改
         }else {
