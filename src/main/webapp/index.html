@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>修仙娱乐</title>
 
-    <link rel="stylesheet" type="text/css" href="src/main/webapp/css/jquery.fullPage.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css"/>
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -18,8 +18,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" src="src/main/webapp/js/scrolloverflow.js"></script>
-    <script type="text/javascript" src="src/main/webapp/js/jquery.fullPage.js"></script>
+    <script type="text/javascript" src="js/scrolloverflow.js"></script>
+    <script type="text/javascript" src="js/jquery.fullPage.js"></script>
 
     <script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock.js"></script>
 
@@ -171,33 +171,33 @@
         /* style for section 0
         * --------------------------------------- */
         #slide1{
-            background-image: url("src/main/webapp/assets/pascal-swier-144672-unsplash.jpg");
+            background-image: url("assets/pascal-swier-144672-unsplash.jpg");
             background-size: cover;
         }
 
         /* style for section 1
         * --------------------------------------- */
-        #vertically-half {
+        .vertically-half {
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
 
-        #vertically-half div {
+        .vertically-half div {
         }
 
-        #gamers-info {
+        #players-info {
             display: grid;
             grid-template: repeat(4, 1fr) / repeat(2, 1fr);
             align-items: center;
             justify-content: center;
         }
 
-        #gamers-info div{
+        #players-info div{
             margin: 0 auto;
         }
 
 
-        #gamers-info button{
+        #players-info button{
             grid-column: 1 / 3;
             font-size: 16px;
             width: 20em;
@@ -226,21 +226,18 @@
             width: 500px;
             height: 360px;
             border-radius: 20px;
-            background-image: url("src/main/webapp/assets/esteban-lopez-478892-unsplash.jpg");
+            background-image: url("assets/esteban-lopez-478892-unsplash.jpg");
             background-size: cover;
         }
 
 
         /* style for section 2
        * --------------------------------------- */
-        .three-columns {
+        .six-cells {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            /*grid-column: 2 / 3;*/
         }
 
-        .three-columns div {
-
-        }
 
     </style>
 
@@ -291,14 +288,14 @@
         </div>
 
         <div class="section" id="section1">
-            <div class="intro" id="vertically-half">
-                <div id="gamers-info">
+            <div class="intro vertically-half">
+                <div id="players-info">
                     <div>平台所有玩家</div>
-                    <div>2</div>
+                    <div id="all-players-num">2</div>
                     <div>当前在线人数</div>
-                    <div>4</div>
+                    <div id="current-online-num">4</div>
                     <div>当前游戏中人数</div>
-                    <div>6</div>
+                    <div id="current-playing-num">6</div>
                     <button>立即加入</button>
                 </div>
                 <div id="today-recommended">
@@ -310,11 +307,11 @@
         </div>
 
         <div class="section" id="section2">
-            <div class="intro three-columns">
-                <div>
-                    <h2>Title</h2>
+            <div class="intro vertically-half">
+                <div class="six-cells">
+                    game1
                 </div>
-                <div>games</div>
+                <div class="six-cells">game2</div>
             </div>
         </div>
 
@@ -336,14 +333,14 @@
     var winHeight = $(window).height();
 
     // set initial div height / width
-    $('#vertically-half > div, .three-columns div').css({
+    $('.vertically-half > div').css({
         'height': winHeight - 140
     });
 
     // make sure div stays full width/height on resize
     $(window).resize(function(){
         var winHeight = $(window).height();
-        $('#vertically-half > div, .three-columns div').css({
+        $('.vertically-half > div').css({
             'height': winHeight - 140
         });
     });
@@ -357,5 +354,25 @@
     })
     // 输出结果
     console.log(JSON.stringify(data, null, 4))
+
+
+    $(function () {
+        $.ajax({
+            url: 'http://127.0.0.1:8080/brpg/lalala',
+            type: 'GET',
+            data: {method:"getNum"},
+            dataType: 'json',
+            timeout: 1000,
+            success: function (data) {
+                $('#all-players-num').text(data[0]);
+                $('#current-online-num').text(data[1]);
+                $('#current-playing-num').text(data[2]);
+            }
+        })
+    })
+
+
+
+
 </script>
 </html>
