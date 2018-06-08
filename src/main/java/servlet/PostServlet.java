@@ -28,7 +28,7 @@ public class PostServlet extends BaseServlet {
     public void getPostList(HttpServletRequest req, HttpServletResponse res)throws Exception{
         String type=req.getParameter("type");
         PostDao dao=new PostDao();
-        List<Post> postList=dao.readPostList(type);
+        List<Object[]> postList=dao.readPostList(type);
         Gson gson=new Gson();
         String postListJson=gson.toJson(postList);
         res.getWriter().write(postListJson);

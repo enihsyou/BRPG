@@ -3,8 +3,8 @@ package dao;
 import javabean.Post;
 import javabean.PostComment;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import java.util.List;
 public class PostDao {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
     //读帖子列表（除内容、评论）
-    public List<Post> readPostList(String type){
-        List<Post> postList=new ArrayList<Post>();
+    public List<Object[]> readPostList(String type){
+        List<Object[]> postList=new ArrayList<>();
         String sql = "SELECT Post_Id,Post_Title,User_Id FROM post where Post_Type=?";
         try {
-            postList = qr.query( sql, new BeanListHandler<Post>(Post.class),type);
+            postList = qr.query( sql, new ArrayListHandler(),  type);
         } catch (SQLException e) {
             e.printStackTrace();
         }

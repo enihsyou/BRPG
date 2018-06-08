@@ -4,8 +4,8 @@ import javabean.Game;
 import javabean.GameComment;
 import javabean.GameScore;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import java.util.List;
 public class GameDao {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
     //读游戏列表（id、name、image、少scorelist）
-    public List<Game> readGameList(){
-         List<Game> gameList = new ArrayList<Game>();
+    public List<Object[]> readGameList(){
+         List<Object[]> gameList = new ArrayList<>();
         String sql="select Game_Id,Game_Image,Game_Name from game";
         try {
-            gameList=qr.query(sql,new BeanListHandler<Game>(Game.class));
+            gameList=qr.query(sql,new ArrayListHandler());
         } catch (SQLException e) {
             e.printStackTrace();
         }
