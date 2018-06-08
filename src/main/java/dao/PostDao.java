@@ -17,7 +17,7 @@ public class PostDao {
         List<Object[]> postList=new ArrayList<>();
         String sql = "SELECT Post_Id,Post_Title,User_Id FROM post where Post_Type=?";
         try {
-            postList = qr.query( sql, new ArrayListHandler(),  type);
+            postList = qr.query( sql, new ArrayListHandler(),type);
         } catch (SQLException e) {
             e.printStackTrace();
         }

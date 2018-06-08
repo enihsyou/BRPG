@@ -18,7 +18,7 @@ public class GameDao {
          List<Object[]> gameList = new ArrayList<>();
         String sql="select Game_Id,Game_Image,Game_Name from game";
         try {
-            gameList=qr.query(sql,new ArrayListHandler());
+            gameList = qr.query(sql,new ArrayListHandler());
         } catch (SQLException e) {
             e.printStackTrace();
         }
