@@ -91,7 +91,9 @@ h1 {
     display: flex;
 }
 
-#header-right div {
+#header-right div, #header-right a {
+    text-decoration: none;
+    color: white;
     margin: 0 1em;
 }
 
@@ -193,6 +195,7 @@ h1 {
     height: 3em;
     justify-self: center;
     border-radius: 1.5em;
+    border: none;
 }
 
 #todays-recommended {
