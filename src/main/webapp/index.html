@@ -37,243 +37,18 @@
             });
         });
     </script>
-    <style>
-        * {
-            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
-        }
-
-        a {
-            cursor: pointer;
-        }
-
-        img {
-            width: 100%;
-        }
-
-        /* Style for our header texts
-        * --------------------------------------- */
-        h1 {
-            font-size: 5em;
-            font-family: arial, helvetica;
-            color: #fff;
-            position: absolute;
-            margin: 100px 100px;
-        }
-
-        .intro {
-            margin: 0 1em;
-        }
-
-        .intro p {
-            color: #fff;
-        }
-
-        /* Centered texts in each section
-        * --------------------------------------- */
-        .section {
-            text-align: center;
-        }
-
-        /* Overwriting styles for control arrows for slides
-        * --------------------------------------- */
-        .fp-controlArrow.fp-prev {
-            left: 35px;
-        }
-
-        .fp-controlArrow.fp-next {
-            right: 35px;
-        }
-
-        /* Fixed header and footer.
-        * --------------------------------------- */
-        #header, #footer {
-            position: fixed;
-            height: 70px;
-            display: block;
-            width: 100%;
-            background: transparent;
-            z-index: 9;
-            text-align: center;
-            color: #f2f2f2;
-            padding: 0 0 0 0;
-        }
-
-        #header {
-            display: grid;
-            grid-template-columns: 1fr repeat(1, auto) 1fr;
-            grid-column-gap: 10px;
-            justify-items: center;
-            top: 0px;
-        }
-
-        #footer {
-            bottom: 0px;
-        }
-
-        /* header elements
-        * --------------------------------------- */
-
-        #header {
-            display: grid;
-            grid-template-columns: 1fr repeat(1, auto) 1fr;
-            align-content: center;
-        }
-
-        #header-center {
-            grid-column-start: 2;
-            text-align: center;
-            display: flex;
-        }
-
-        #header-center div {
-            margin: 0 1em;
-        }
-
-        #header-right {
-            margin-left: auto;
-            margin-right: 2em;
-            display: flex;
-        }
-
-        #header-right div {
-            margin: 0 1em;
-        }
-
-        /* footer elements
-       * --------------------------------------- */
-
-        #footer {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            align-content: end;
-        }
-
-        #footer div {
-            margin-bottom: 0.5em;
-        }
-
-        #footer-left {
-            grid-column-start: 1;
-            text-align: center;
-            display: flex;
-            margin-left: 3em;
-        }
-
-        #footer-right {
-            margin-left: auto;
-            margin-right: 2em;
-            justify-content: space-around;
-        }
-
-        #footer-right a {
-            margin: 0 1em;
-        }
-
-        /* style for section 0
-        * --------------------------------------- */
-        #slide1 {
-            background-image: url("assets/pascal-swier-144672-unsplash.jpg");
-            background-size: cover;
-        }
-
-        /* style for section 1
-        * --------------------------------------- */
-        .vertically-half {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .vertically-half div {
-        }
-
-        #players-info {
-            display: grid;
-            grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-            align-items: center;
-            justify-content: center;
-        }
-
-        #players-info div {
-            margin: 0 auto;
-        }
-
-        #players-info button {
-            grid-column: 1 / 3;
-            font-size: 16px;
-            width: 20em;
-            height: 3em;
-            justify-self: center;
-            border-radius: 1.5em;
-        }
-
-        #todays-recommended {
-            display: grid;
-            grid-template-rows: 1fr 4fr 1fr;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-        #todays-recommended div {
-
-        }
-
-        .game-card div, button {
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .game-card div:hover, button:hover {
-            box-shadow: 0 20px 30px rgba(0, 0, 0, .25);
-        }
-
-        .game-card-large {
-            width: 540px;
-            height: 360px;
-            border-radius: 20px;
-            background-image: url("assets/esteban-lopez-478892-unsplash.jpg");
-            background-size: cover;
-        }
-
-
-        /* style for section 2
-       * --------------------------------------- */
-        .six-cells {
-            display: grid;
-            grid-template: repeat(6, 1fr) / repeat(2, 1fr);
-            align-items: end;
-        }
-
-        .six-cells h2 {
-            grid-column: 1 / 3;
-        }
-
-        .six-cells div {
-            grid-row: 2 / span 2;
-            width: 225px;
-            height: 150px;
-            border-radius: 10px;
-            background-image: url("assets/chase-clark-509092-unsplash.jpg");
-            background-size: cover;
-            margin: 0 auto;
-        }
-
-        .six-cells div:nth-last-child(-n+2) {
-            grid-row: 4 / span 2;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="css/index2.css" />
 
 </head>
 <body>
 
     <div id="header">
         <div id="header-center">
-            <div>游戏仓库</div>
-            <div>修仙娱乐</div>     <!--最好用logo代替-->
-            <div>社区中心</div>
+            <div class="hvr-underline-from-center">游戏仓库</div>
+            <div>
+                <img src="assets/xx_logo.svg" style="display: inline; width: 30px">
+            </div>
+            <div class="hvr-underline-from-center">社区中心</div>
         </div>
         <div id="header-right">
             <div>登录</div>
@@ -325,7 +100,8 @@
                 </div>
                 <div id="todays-recommended" class="game-card">
                     <h2>今日推荐</h2>
-                    <div class="game-card-large">
+                    <div class="game-card-wrapper">
+                        <div class="game-card-fill"></div>
                     </div>
                 </div>
             </div>
@@ -335,18 +111,34 @@
             <div class="intro vertically-half">
                 <div class="six-cells game-card">
                     <h2>本周最热</h2>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
 
                 </div>
                 <div class="six-cells game-card">
                     <h2>最新速递</h2>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
                 </div>
 
             </div>
