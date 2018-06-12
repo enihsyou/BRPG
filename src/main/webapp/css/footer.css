@@ -3,6 +3,9 @@
     margin: 0;
 }
 #footer {
+    position:fixed;
+    bottom:0px;
+    left:0px;
     height: 126px;
     width: 100%;
     margin: 0 auto;

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏列表</title>
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
+    <link rel="stylesheet" type="text/css" href="css/pagination.css" />
+    <link rel="stylesheet" type="text/css" href="css/grade.css" />
+    <link rel="stylesheet" type="text/css" href="css/gamelist.css" />
+</head>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:8080/brpg/lalala',
+            type: 'GET',
+            data:{method:"getList"},
+            dataType: 'json',
+            timeout: 1000,
+            beforeSend: LoadFunction, //加载执行方法
+            error: erryFunction,  //错误执行方法
+            success: succFunction //成功执行方法
+        });
+        function LoadFunction() {
+            $("#list").html('加载中...');
+        }
+        function erryFunction() {
+            alert("error");
+        }
+        function succFunction(data) {
+            //$("#list").html('');
+            var json = eval(data); //数组
+            var dbody =$("#dbody");
+            $.each(json, function (index, item) {
+                //循环获取数据
+                var gameName = json[index].gameName;//游戏名字
+                var image = json[index].image;//游戏图片
+                var averageScore = json[index].averageScore;//游戏评分
+                var dl = $('<dl></dl>');
+                dl.append('<dt>'+gameName+'<span>'+"评分："+averageScore+"分"+'</span>'+'</dt>'
+                +'<dd class="dd0"<img src='+image +'>'+'</dd>'
+                +'<dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>'
+                +'<dd class="dd2"><a href="#">查看详情</a></dd>');
+                dbody.append(dl);
+                //$("#listul").html($("#listul").html() + "<br>" + gameName + " - " + "<img src="+image +">"+" - " + averageScore + "<br/>");
+            });
+            var num_entries = $("#dbody dl").length;
+            var showCount = 6;
+            var initPagination = function() {
+                // 创建分页
+                $("#Pagination").pagination(num_entries, {
+                    num_edge_entries: 1, //边缘页数
+                    num_display_entries: 6, //主体页数
+                    callback: pageselectCallback,
+                    items_per_page:showCount //每页显示1项
+                });
+            }();
+            function pageselectCallback(page_index, jq){
+                var max_elem = Math.min((page_index+1) *showCount, num_entries);
+                for(var i=page_index*showCount;i<max_elem;i++){
+                    var new_content = $("#dbody dl:eq("+i+")").clone();
+                    $("#htcList").append(new_content); //装载对应分页的内容
+                }
+                return false;
+            }
+            $('#dbody').replaceWith(dbody);
+        }
+    });
+</script>
+<body>
+<div id="cen_right_top" class="btndiv">
+    <h3 class="active">默认</h3>
+    <h3 >按评分</h3>
+    <div class="btndiv2" style="display:block" >
+        <dl>
+            <dt>迷失岛<span>评分：9分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/img1.jpg" ></a></dd>
+            <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+        <dl>
+            <dt>猫忍之心<span>评分：7分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/img2.jpg" ></a></dd>
+            <dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+        <dl>
+            <dt>嗜血代码<span>评分：9分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/i2.jpg" ></a></dd>
+            <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+        <dl>
+            <dt>穷追不舍<span>评分：9分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/1368022916_1719592020_22615_imageAddr.jpg" ></a></dd>
+            <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+        <dl>
+            <dt>杀手谜题<span>评分：8分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/1367250767_1719592020_345_imageAddr.jpg" alt="测试延期"></a></dd>
+            <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+    </div>
+    <div class="btndiv2" id="dbody">
+        <dl>
+            <dt>迷失岛<span>评分：9分</span></dt>
+            <dd class="dd0"><a href="#"><img src="assets/img1.jpg" ></a></dd>
+            <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
+            <dd class="dd2"><a href="#">查看详情</a></dd>
+        </dl>
+
+    </div>
+</div>
+<br/><br><br>
+<div id="Pagination" class="pagination"><!-- 这里显示分页 -->
+<ul id="Searchresult" style="display:none;">
+</ul>
+</div>
+</body>
+</html>

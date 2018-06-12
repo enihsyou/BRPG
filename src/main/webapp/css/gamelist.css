@@ -1,19 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
-.mainleft2{
+.btndiv2{
 	width:734px;
 	height:1115px;
 	margin:0 auto;
 	border-top:none;
 	border-bottom:none;
 }
-.mainleft2 dl{
+.btndiv2 dl{
 	width:734px;
 	height:220px;
 	border-bottom:1px solid #87CEFA;
     position: relative;
 }
-.mainleft2 dl dt{
+.btndiv2 dl dt{
     width: 700px;
     height: 50px;
     line-height: 50px;
@@ -21,21 +21,21 @@
     margin-left: 20px;
     font-weight: bold;
 }
-.mainleft2 dl dt span{
+.btndiv2 dl dt span{
     font-size: 12px;
     color: #999;
     position:absolute;
     top: 5px;
     right: 15px;
 }
-.mainleft2 dl dd.dd0{
+.btndiv2 dl dd.dd0{
     float: left;
     width: 140px;
     height: 140px;
     margin-left: 20px;
     display: inline;
 }
-.mainleft2 dl dd.dd1{
+.btndiv2 dl dd.dd1{
     margin-right: 15px;
     width: 544px;
     height:20px;
@@ -44,18 +44,22 @@
     color:#666;
     display: inline;
 }
-.mainleft2 dl dd.dd2{
+.btndiv2 dl dd.dd2{
     position: absolute;
     top: 170px;
     left: 180px;
     font-size:16px;
 }
-.mainleft2 dl dd.dd2 a{
+.btndiv2 dl dd.dd2 a{
     color: red;
     text-decoration: none;
 }
-.mainleft2 dl dd.dd2 a:hover{
+.btndiv2 dl dd.dd2 a:hover{
     text-decoration: underline;
+}
+
+.dd0 img{
+    border: 0;
 }
 
 	

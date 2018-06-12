@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏详情</title>
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/gamedetail.css" />
+</head>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:8080/brpg/lalala',
+            type: 'GET',
+            data:{method:"getGameInfo"},
+            dataType: 'json',
+            timeout: 1000,
+            beforeSend: LoadFunction, //加载执行方法
+            error: erryFunction,  //错误执行方法
+            success: succFunction //成功执行方法
+        });
+        function LoadFunction() {
+            $("#list").html('加载中...');
+        }
+        function erryFunction() {
+            alert("error");
+        }
+        function succFunction(data) {
+            var json = eval(data); //数组
+            var gameName = json.gameName;//游戏名字
+            var image = json.image;//游戏图片
+            var averageScore = json.averageScore;//游戏评分
+            var synopsis = json.synopsis;//游戏简介
+            var gamecommentList = json.gameCommentList;//游戏评论
+            htmlgameName +="<h3>+json.gameName</h3>";
+            $("#gamename").html(htmlgameName); //在html页面id=gamename的标签里显示html内容
+        }
+    });
+</script>
+<body>
+<div id="page1"></div>
+<script>
+    $("#page1").load("header.html");
+</script>
+<div id="detail">
+    <div id="detail-top" style="position:relative;">
+        <div id="gamename" style="position:absolute;width:100px;height:100px;z-indent:2;left: 120px;top: 30px;">
+            <h3 style="color:white";>泡泡堂</h3></div>
+    <div id="image">
+        <img src="assets/p1.jpg" id="img">
+    </div>
+    <div id="content">
+        <dl>
+            <dt class=""><h3>评分：9分</h3></dt>
+                <br/>
+            <dt><h3>游戏简介</h3></dt>
+            <div class="dd">
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+        <br/>
+            <dt><h3>最新评论</h3></dt>
+            <div class="dd">
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+            <br/><br/>
+        </dl>
+        <button style="margin-top: 20px;">收藏游戏</button><br/>
+    </div>
+
+    </div>
+    <div style=" border-bottom: 1px solid #e4e4e4;"></div>
+    <br/>
+    <div id="detail-bottom">
+        <div id="detail-bottom-left">
+            <h3>游戏规则</h3>
+            <div class="dd">
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+            </div>
+            <h3>发表评论</h3>
+            <input type="text" id="input">
+            <br/><br/>
+
+            <div style="padding-left: 280px"><button id="submit">提交
+            </button>
+            </div>
+        </div>
+        <div id="detail-bottom-right">
+            <h3>所有评论</h3>
+        <div class="row item_msg" >
+            <div class="message1" >
+                <div class="user-left">
+                <img  src="assets/icon.png" class="col-sm-2 col-xs-2" style="border-radius: 50%">
+                </div>
+                <div class="col-sm-10 col-xs-10" class="user-right">
+                    <span style="font-weight: bold;">Jack.C</span>
+                    <br>
+                    <small class="date" style="color:#999"> XX年XX月XX日</small>
+                </div>
+                <p>这款游戏也太好玩了吧！！！！</p>
+            </div>
+            <div  style="border-bottom: #87CEFA 1px solid;margin-top: 100px;"></div>
+            <div class="message2" >
+                    <div class="user-left">
+                        <img  src="assets/icon.png" class="col-sm-2 col-xs-2" style="border-radius: 50%">
+                    </div>
+                    <div class="col-sm-10 col-xs-10" class="user-right">
+                        <span style="font-weight: bold;">Mary.J</span>
+                        <br>
+                        <small class="date" style="color:#999"> XX年XX月XX日</small>
+                    </div>
+                    <p>游戏体验还不错，推荐~</p>
+                </div>
+            <div  style="border-bottom: #87CEFA 1px solid;margin-top: 100px;"></div>
+        </div>
+            <div class="col-sm-12" style="padding: 10px;text-align: center;"><a href="#">查看更多</a></div>
+        </div>
+    </div>
+</div>
+<div id="page2">
+<script>
+    $("#page2").load("footer.html");
+</script>
+</div>
+</body>
+</html>

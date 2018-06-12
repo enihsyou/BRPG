@@ -15,7 +15,7 @@ a,img{
     background:no-repeat #87CEFA;
 
 }
-#cen_right_top h3 .active{
+h3 .active{
     color:black;
 
 }
@@ -30,7 +30,7 @@ a,img{
     cursor:pointer;
 }
 h3{
-    color:#87CEFA;
+    color:#0000CD;
 }
 #cen_right_top div{
     font-size:14px;
