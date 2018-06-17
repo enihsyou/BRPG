@@ -39,7 +39,7 @@ public class StupidServlet extends BaseServlet {
             Game gameA=new Game();
             gameA.setGameName("game"+i);
             gameA.setAverageScore(Float.parseFloat("2.2"));
-            gameA.setImage("https://www.baidu.com/img/bd_logo1.png?where=super");
+            gameA.setImage("http://localhost:8080/brpg/assets/img2.jpg");
             gameList.add(gameA);
         }
         Gson gson=new Gson();
@@ -54,11 +54,13 @@ public class StupidServlet extends BaseServlet {
      * @throws Exception
      */
     public void getGameInfo(HttpServletRequest req,HttpServletResponse res)throws Exception{
+        res.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html;charset=UTF-8");
         Game game=new Game();
         game.setGameID("10001");
         game.setGameName("嘻嘻哈哈");
         game.setSynopsis("我是一个小朋友小呀小朋友，今年二十又七八又呀又七八");
-        game.setImage("https://cdn.steamstatic.com.8686c.com/steam/apps/846470/capsule_184x69.jpg?t=1528390713");
+        game.setImage("http://localhost:8080/brpg/assets/p1.jpg");
         game.setAverageScore(Float.parseFloat("4.5"));
         GameCommentList gameCommentList=new GameCommentList();
         List<GameComment> gameComments=new ArrayList<>();

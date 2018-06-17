@@ -50,11 +50,11 @@
     left: 180px;
     font-size:16px;
 }
-.btndiv2 dl dd.dd2 a{
+.btndiv2 dl dd.dd2 button{
     color: red;
     text-decoration: none;
 }
-.btndiv2 dl dd.dd2 a:hover{
+.btndiv2 dl dd.dd2 button:hover{
     text-decoration: underline;
 }
 

@@ -25,14 +25,18 @@
             alert("error");
         }
         function succFunction(data) {
+            console.log(data);
+            var i;
             var json = eval(data); //数组
             var gameName = json.gameName;//游戏名字
             var image = json.image;//游戏图片
             var averageScore = json.averageScore;//游戏评分
             var synopsis = json.synopsis;//游戏简介
             var gamecommentList = json.gameCommentList;//游戏评论
-            htmlgameName +="<h3>+json.gameName</h3>";
-            $("#gamename").html(htmlgameName); //在html页面id=gamename的标签里显示html内容
+            $('#gamename').append('<h3 style="color:white";>' +gameName+'</h3>');
+            $('#image').append('<img id="img" src='+image+'>');
+            $('.dt1').append('<h3>' +"评分："+averageScore+"分"+'</h3>');
+            $('#synopsis').append('<p>'+synopsis+'</p>');
         }
     });
 </script>
@@ -44,28 +48,23 @@
 <div id="detail">
     <div id="detail-top" style="position:relative;">
         <div id="gamename" style="position:absolute;width:100px;height:100px;z-indent:2;left: 120px;top: 30px;">
-            <h3 style="color:white";>泡泡堂</h3></div>
-    <div id="image">
-        <img src="assets/p1.jpg" id="img">
-    </div>
-    <div id="content">
-        <dl>
-            <dt class=""><h3>评分：9分</h3></dt>
+        </div>
+        <div id="image">
+        </div>
+        <div id="content">
+            <dl>
+                <dt class="dt1"></dt>
                 <br/>
-            <dt><h3>游戏简介</h3></dt>
-            <div class="dd">
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-        <br/>
+                <dt><h3>游戏简介</h3></dt>
+            <div class="dd" id="synopsis"></div><br/>
             <dt><h3>最新评论</h3></dt>
             <div class="dd">
                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
             <br/><br/>
-        </dl>
-        <button style="margin-top: 20px;">收藏游戏</button><br/>
-    </div>
-
+            </dl>
+            <button style="margin-top: 20px;">收藏游戏</button><br/>
+        </div>
     </div>
     <div style=" border-bottom: 1px solid #e4e4e4;"></div>
     <br/>
@@ -73,14 +72,11 @@
         <div id="detail-bottom-left">
             <h3>游戏规则</h3>
             <div class="dd">
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
+                游戏加载完毕点击[点击开始] -
+                接着点击喜欢的模式 -&nbsp;&nbsp;
+                接着点击选择难度 -&nbsp;&nbsp;
+                点击选择角色即可开始游戏 -&nbsp;
+                合理操作 击败所有的敌人 -&nbsp;
             </div>
             <h3>发表评论</h3>
             <input type="text" id="input">
@@ -98,11 +94,11 @@
                 <img  src="assets/icon.png" class="col-sm-2 col-xs-2" style="border-radius: 50%">
                 </div>
                 <div class="col-sm-10 col-xs-10" class="user-right">
-                    <span style="font-weight: bold;">Jack.C</span>
+                    <span style="font-weight: bold;" id="username">Jack.C</span>
                     <br>
-                    <small class="date" style="color:#999"> XX年XX月XX日</small>
+                    <small class="date" style="color:#999"> 2018年06月10日</small>
                 </div>
-                <p>这款游戏也太好玩了吧！！！！</p>
+                <p id="content1">这款游戏也太好玩了吧！！！！</p>
             </div>
             <div  style="border-bottom: #87CEFA 1px solid;margin-top: 100px;"></div>
             <div class="message2" >
@@ -112,7 +108,7 @@
                     <div class="col-sm-10 col-xs-10" class="user-right">
                         <span style="font-weight: bold;">Mary.J</span>
                         <br>
-                        <small class="date" style="color:#999"> XX年XX月XX日</small>
+                        <small class="date" style="color:#999"> 2018年05月30日</small>
                     </div>
                     <p>游戏体验还不错，推荐~</p>
                 </div>
@@ -122,10 +118,9 @@
         </div>
     </div>
 </div>
-<div id="page2">
+<div id="page2"></div>
 <script>
     $("#page2").load("footer.html");
 </script>
-</div>
 </body>
 </html>

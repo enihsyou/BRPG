@@ -6,9 +6,7 @@
     <title>游戏仓库</title>
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.pagination.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
     <script src="http://mockjs.com/dist/mock.js"></script>
     <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
     <link rel="stylesheet" type="text/css" href="css/pagination.css" />
@@ -34,7 +32,6 @@
             alert("error");
         }
         function succFunction(data) {
-            //$("#list").html('');
             var json = eval(data); //数组
             var dbody =$("#dbody");
             $.each(json, function (index, item) {
@@ -46,9 +43,22 @@
                 dl.append('<dt>'+gameName+'<span>'+"评分："+averageScore+"分"+'</span>'+'</dt>'
                     +'<dd class="dd0"<img src='+image +'>'+'</dd>'
                     +'<dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>'
-                    +'<dd class="dd2"><a href="#">查看详情</a></dd>');
+                    +'<dd class="dd2" id="game-detail'+json[index].gameID+'><button >查看详情</button></dd>');
                 dbody.append(dl);
-                //$("#listul").html($("#listul").html() + "<br>" + gameName + " - " + "<img src="+image +">"+" - " + averageScore + "<br/>");
+                $('#game-detail' + json[index].gameID).on("click", "button", json[index], function (event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: 'http://localhost:8080/brpg/lalala',
+                        type: 'POST',
+                        data: {method:"getList",gameID: json[index].gameID},
+                        timeout: 3000,
+                        success: function (data) {
+                            if (data==='1')
+                                window.location.href = "http://localhost:8080/gamedetial.html";
+                            else alert("请求失败");
+                        }
+                    })
+                })
             });
             var num_entries = $("#dbody dl").length;
             var showCount = 6;
@@ -70,12 +80,17 @@
                 return false;
             }
             $('#dbody').replaceWith(dbody);
+
         }
     });
 </script>
 <body>
-<div id="page1"></div>
-<div id="page2">
+<div id="page1">
+    <script>
+    $("#page1").load("header.html");
+    </script>
+</div>
+<div id="page2" style="height:1500px;">
     <div id="cen_right_top" class="btndiv">
         <h3 class="active">默认</h3>
         <h3 >按评分</h3>
@@ -122,11 +137,10 @@
         </div>
     </div>
 </div>
-<div id="page3"></div>
+<div id="page3">
 <script>
-    $("#page1").load("header.html");
     $("#page3").load("footer.html");
 </script>
-
+</div>
 </body>
 </html>

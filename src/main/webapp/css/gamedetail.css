@@ -8,8 +8,7 @@
 #image{
     float: left;
     width: 500px;
-    padding-left: 40px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 #img{
     width: 380px;
@@ -65,7 +64,7 @@ h3{
     color: #8a8a8a;
 }
 .dd{
-    width: 200px;
+    width: 230px;
 }
 .user-left{
     float: left;
