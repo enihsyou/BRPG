@@ -14,6 +14,25 @@ import java.util.List;
 
 @WebServlet(name = "StupidServlet",urlPatterns = "/lalala")
 public class StupidServlet extends BaseServlet {
+
+    /**
+     * 登录
+     * @param req 传入参数userId，password，method=login
+     * @param res 返回1表示验证通过，返回0表示登录失败
+     * @throws Exception
+     */
+    public void login(HttpServletRequest req,HttpServletResponse res)throws Exception{
+        String userId=req.getParameter("userId");
+        String password=req.getParameter("password");
+        if (userId.equals(password)){
+            res.getWriter().write("1");
+        }else {
+            res.getWriter().write("0");
+        }
+    }
+
+
+
     /**
      * 读取注册人数，在线人数，游戏人数
      * @param req
