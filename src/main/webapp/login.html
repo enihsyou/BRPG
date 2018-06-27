@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <title>LOGIN</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </head>
 <body>
     <div class="wrapper">
         <div class="container">
             <h1>登录</h1>
             <form class="form">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="password" id="password" placeholder="Password">
                 <button type="submit" id="login-button">Login</button>
             </form>
+            <span>没有账号？免费</span>
+            <a href="signup.html">注册</a>
         </div>
 
         <ul class="bg-bubbles">
@@ -29,14 +33,34 @@
             <li></li>
         </ul>
     </div>
-    
+
 </body>
 <script>
-    $("#login-button").click(function(event){
+    const email = $("#email");
+    const password = $("#password");
+    email.blur(function () {
+        console.log(this.value);
+        const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
+        if (!pattern.test(this.value)) {
+            email.addClass("invalid-display");
+        } else {
+            email.removeClass("invalid-display");
+        }
+    });
+
+    $("#login-button").click(function (event) {
         event.preventDefault();
 
-        $('form').fadeOut(500);
-        $('.wrapper').addClass('form-success');
+        if (email.val() === "")
+            alert("邮箱为空");
+        else if (password.val() === "")
+            alert("密码为空");
+        else {
+            alert("成功");
+            $('form').fadeOut(500);
+            $('.wrapper').addClass('form-success');
+        }
+
     });
 </script>
 </html>

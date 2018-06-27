@@ -1,50 +1,57 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 
-@prim: #6cc5ca;
+@prim: #86A8E7;
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
   font-weight: 300;
 }
 
-body{
+body {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
   font-weight: 300;
 
   ::-webkit-input-placeholder { /* WebKit browsers */
     font-family: 'Source Sans Pro', sans-serif;
-    color:    white;
+    color: white;
     font-weight: 300;
   }
   :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     font-family: 'Source Sans Pro', sans-serif;
-    color:    white;
-    opacity:  1;
+    color: white;
+    opacity: 1;
     font-weight: 300;
   }
   ::-moz-placeholder { /* Mozilla Firefox 19+ */
     font-family: 'Source Sans Pro', sans-serif;
-    color:    white;
-    opacity:  1;
+    color: white;
+    opacity: 1;
     font-weight: 300;
   }
   :-ms-input-placeholder { /* Internet Explorer 10+ */
     font-family: 'Source Sans Pro', sans-serif;
-    color:    white;
+    color: white;
     font-weight: 300;
   }
 }
 
-.wrapper{
-  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #6cc5ca 0%, #257aa7 100%);
+a {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.wrapper {
+  //background: #50a3a2;
+  //background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  //background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  //background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  //background: linear-gradient(to bottom right, #6cc5ca 0%, #257aa7 100%);
+  background: #7F7FD5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   position: absolute;
   //top: 50%;
@@ -54,36 +61,41 @@ body{
   //margin-top: -200px;
   overflow: hidden;
 
-  &.form-success{
-    .container{
-      h1{
+  &.form-success {
+    .container {
+      h1 {
         transform: translateY(85px);
       }
     }
   }
 }
 
-.container{
+.container {
   max-width: 600px;
   margin: 8% auto;
   padding: 80px 0;
   height: 400px;
   text-align: center;
 
-  h1{
+  h1 {
     font-size: 40px;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
     font-weight: 200;
   }
+
+  a {
+    position: relative;
+    z-index: 2;
+  }
 }
 
-form{
+form {
   padding: 20px 0;
   position: relative;
   z-index: 2;
 
-  input{
+  input {
     display: block;
     appearance: none;
     outline: 0;
@@ -103,19 +115,32 @@ form{
     transition-duration: 0.25s;
     font-weight: 300;
 
-    &:hover{
+    &:hover {
       background-color: fade(white, 40%);
     }
 
-    &:focus{
+    &:focus {
       background-color: white;
       width: 300px;
 
       color: @prim;
     }
+
+    //&:invalid {
+    //  border: 2px dashed red;
+    //}
+
+    //&:valid {
+    //  border: 2px solid black
+    //}
   }
 
-  button{
+  .invalid-display{
+    border-color: rgba(255, 0, 0, 0.4);
+  }
+
+
+  button {
     appearance: none;
     outline: 0;
     background-color: white;
@@ -128,13 +153,13 @@ form{
     font-size: 18px;
     transition-duration: 0.25s;
 
-    &:hover{
+    &:hover {
       background-color: rgb(245, 247, 249);
     }
   }
 }
 
-.bg-bubbles{
+.bg-bubbles {
   position: absolute;
   top: 0;
   left: 0;
@@ -143,7 +168,7 @@ form{
 
   z-index: 1;
 
-  li{
+  li {
     position: absolute;
     list-style: none;
     display: block;
@@ -154,16 +179,16 @@ form{
     bottom: -160px;
 
     -webkit-animation: square 25s infinite;
-    animation:         square 25s infinite;
+    animation: square 25s infinite;
 
     -webkit-transition-timing-function: linear;
     transition-timing-function: linear;
 
-    &:nth-child(1){
+    &:nth-child(1) {
       left: 10%;
     }
 
-    &:nth-child(2){
+    &:nth-child(2) {
       left: 20%;
 
       width: 80px;
@@ -173,12 +198,12 @@ form{
       animation-duration: 17s;
     }
 
-    &:nth-child(3){
+    &:nth-child(3) {
       left: 25%;
       animation-delay: 4s;
     }
 
-    &:nth-child(4){
+    &:nth-child(4) {
       left: 40%;
       width: 60px;
       height: 60px;
@@ -188,11 +213,11 @@ form{
       background-color: fade(white, 25%);
     }
 
-    &:nth-child(5){
+    &:nth-child(5) {
       left: 70%;
     }
 
-    &:nth-child(6){
+    &:nth-child(6) {
       left: 80%;
       width: 120px;
       height: 120px;
@@ -201,7 +226,7 @@ form{
       background-color: fade(white, 20%);
     }
 
-    &:nth-child(7){
+    &:nth-child(7) {
       left: 32%;
       width: 160px;
       height: 160px;
@@ -209,7 +234,7 @@ form{
       animation-delay: 7s;
     }
 
-    &:nth-child(8){
+    &:nth-child(8) {
       left: 55%;
       width: 20px;
       height: 20px;
@@ -218,7 +243,7 @@ form{
       animation-duration: 40s;
     }
 
-    &:nth-child(9){
+    &:nth-child(9) {
       left: 25%;
       width: 10px;
       height: 10px;
@@ -228,7 +253,7 @@ form{
       background-color: fade(white, 30%);
     }
 
-    &:nth-child(10){
+    &:nth-child(10) {
       left: 90%;
       width: 160px;
       height: 160px;
@@ -239,10 +264,19 @@ form{
 }
 
 @-webkit-keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-700px) rotate(600deg); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-700px) rotate(600deg);
+  }
 }
+
 @keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-700px) rotate(600deg); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-700px) rotate(600deg);
+  }
 }
