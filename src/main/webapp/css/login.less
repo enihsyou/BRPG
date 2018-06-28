@@ -61,10 +61,18 @@ a {
   //margin-top: -200px;
   overflow: hidden;
 
-  &.form-success {
+  &.form-success-login {
     .container {
       h1 {
-        transform: translateY(85px);
+        transform: translateY(100px);
+      }
+    }
+  }
+
+  &.form-success-signup {
+    .container {
+      h1 {
+        transform: translateY(130px);
       }
     }
   }
@@ -126,13 +134,6 @@ form {
       color: @prim;
     }
 
-    //&:invalid {
-    //  border: 2px dashed red;
-    //}
-
-    //&:valid {
-    //  border: 2px solid black
-    //}
   }
 
   .invalid-display{

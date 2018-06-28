@@ -27,10 +27,10 @@ public class GameServlet extends BaseServlet {
      */
     public void getGameList(HttpServletRequest req, HttpServletResponse res)throws Exception{
         GameDao dao=new GameDao();
-        List<Game> gameList=dao.readGameList();
+//        List<Game> gameList=dao.readGameList();
         Gson gson=new Gson();
-        String gameListJson=gson.toJson(gameList);
-        res.getWriter().write(gameListJson);
+//        String gameListJson=gson.toJson(gameList);
+//        res.getWriter().write(gameListJson);
     }
 
     /**
@@ -41,7 +41,7 @@ public class GameServlet extends BaseServlet {
      */
     public void getGameListByOrder(HttpServletRequest req,HttpServletResponse res)throws Exception{
         GameDao dao=new GameDao();
-        List<Game> gameList=dao.readGameList();
+//        List<Game> gameList=dao.readGameList();
         Comparator<Game> comparator=new Comparator<Game>() {
             @Override
             public int compare(Game o1, Game o2) {
@@ -54,10 +54,10 @@ public class GameServlet extends BaseServlet {
                 }
             }
         };
-        gameList.sort(comparator);
+//        gameList.sort(comparator);
         Gson gson=new Gson();
-        String gameListJson=gson.toJson(gameList);
-        res.getWriter().write(gameListJson);
+//        String gameListJson=gson.toJson(gameList);
+//        res.getWriter().write(gameListJson);
     }
 
     /**
