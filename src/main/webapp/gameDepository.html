@@ -6,14 +6,15 @@
     <title>游戏仓库</title>
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
     <script src="http://mockjs.com/dist/mock.js"></script>
     <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css" />
-    <link rel="stylesheet" type="text/css" href="css/pagination.css" />
+    <link rel="stylesheet" type="text/css" href="css/page.css" />
     <link rel="stylesheet" type="text/css" href="css/grade.css" />
     <link rel="stylesheet" type="text/css" href="css/gamelist.css" />
 </head>
 <script type="text/javascript">
+    var options = {};
     $(function () {
         $.ajax({
             url: 'http://localhost:8080/brpg/lalala',
@@ -35,53 +36,38 @@
             var json = eval(data); //数组
             console.log(data);
             var dbody =$("#dbody");
-            $.each(json, function (index, item) {
-                //循环获取数据
-                alert(index);
-                var gameName = json[index].gameName;//游戏名字
-                var image = json[index].image;//游戏图片
-                var averageScore = json[index].averageScore;//游戏评分
-                var dl = $('<dl></dl>');
-                dl.append('<dt>'+gameName+'<span>'+"评分："+averageScore+"分"+'</span>'+'</dt>'
-                    +'<dd class="dd0"><img src='+image +'>'+'</dd>'
-                    +'<dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>'
-                    +'<dd class="dd2" id="game-detai'+json[index].gameID+'"><button >查看详情</button></dd>');
-                dbody.append(dl);
-                $('#game-detail' + json[index].gameID).on("click", "button", json[index], function (event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: 'http://localhost:8080/brpg/lalala',
-                        type: 'POST',
-                        data: {method:"getList",gameID: json[index].gameID},
-                        timeout: 3000,
-                        success: function (data) {
-                            if (data==='1')
-                                window.location.href = "http://localhost:8080/gamedetial.html";
-                            else alert("请求失败");
-                        }
-                    })
-                })
-            });
-            var num_entries = $("#dbody dl").length;
-            var showCount = 6;
-            var initPagination = function() {
-                // 创建分页
-                $("#Pagination").pagination(num_entries, {
-                    num_edge_entries: 1, //边缘页数
-                    num_display_entries: 6, //主体页数
-                    callback: pageselectCallback,
-                    items_per_page:showCount //每页显示1项
-                });
-            }();
-            function pageselectCallback(page_index, jq){
-                var max_elem = Math.min((page_index+1) *showCount, num_entries);
-                for(var i=page_index*showCount;i<max_elem;i++){
-                    var new_content = $("#dbody dl:eq("+i+")").clone();
-                    $("#htcList").append(new_content); //装载对应分页的内容
+            options = {
+                "id": "page",//显示页码的元素
+                "data":json ,//显示数据
+                "maxshowpageitem": 3,//最多显示的页码个数
+                "pagelistcount": 5,//每页显示数据个数
+                "callBack": function (list) {
+                    console.log(list);
+                    var cHtml = "";
+                    for(var i=0;i<list.length;i++){
+                        cHtml += "<dl><dt>" + list[i].gameName +'<span>'+"评分："+list[i].averageScore+"分"+'</span>'+"</dt>";//处理数据
+                        cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
+                        cHtml += '<dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>';
+                        cHtml += '<dd class="dd2" id="game-detai'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
+                        $('#game-detail' + list[i].gameID).on("click", "button", list[i], function (event) {
+                            event.preventDefault();
+                            $.ajax({
+                                url: 'http://localhost:8080/brpg/lalala',
+                                type: 'POST',
+                                data: {method:"getList",gameID: list[i].gameID},
+                                timeout: 3000,
+                                success: function (data) {
+                                    if (data==='1')
+                                        window.location.href = "http://localhost:8080/gamedetial.html";
+                                    else alert("请求失败");
+                                }
+                            })
+                        })
+                    }
+                    $("#dbody").html(cHtml);//将数据增加到页面中
                 }
-                return false;
-            }
-            $('#dbody').replaceWith(dbody);
+            };
+            page.init(json.length, 1, options);
 
         }
     });
@@ -129,14 +115,9 @@
             </dl>
         </div>
         <div class="btndiv2" id="dbody">
-            <dl>
-                <dt>迷失岛<span>评分：9分</span></dt>
-                <dd class="dd0"><a href="#"><img src="assets/img1.jpg" ></a></dd>
-                <dd class="dd1">>亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>
-                <dd class="dd2"><a href="#">查看详情</a></dd>
-            </dl>
 
         </div>
+        <ul class="page" id="page" style="padding-left: 150px;"></ul>
     </div>
 </div>
 <div id="page3">
