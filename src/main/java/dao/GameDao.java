@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GameDao {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
-    //读游戏列表（id、name、image、少scorelist）
+    //读游戏列表（id、name、image、缺scorelist）
     public List<Game> readGameList(){
         List<Game> gameList = new ArrayList<Game>();
         String sql="select Game_Id,Game_Image,Game_Name from game";
