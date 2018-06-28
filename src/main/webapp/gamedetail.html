@@ -38,6 +38,7 @@
             $('.dt1').append('<h3>' +"评分："+averageScore+"分"+'</h3>');
             $('#synopsis').append('<p>'+synopsis+'</p>');
             for(i=0;i<gamecommentList.length;i++) {
+
                 $('.message1').append('<div class="col-sm-10 col-xs-10" class="user-right" id="user-right">'+
                     '<span style="font-weight: bold;" id="username">'+gamecommentList[i].user.userName+'</span>'+
                     '<small class="date" style="color:#999;padding-left: 20px">'+gamecommentList[i].time+'</small>'
