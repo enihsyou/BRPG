@@ -1,72 +1,319 @@
-.dianxin_intro {
-	POSITION: relative; MARGIN: 25px auto 0px; WIDTH: 930px; HEIGHT: 160px
+* {
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
 }
-.dianxin_intro P {
-	DISPLAY: block
+
+a {
+    cursor: pointer;
 }
-.intro_os {
-	BACKGROUND-COLOR: #fff; WIDTH: 300px; FLOAT: left; HEIGHT: 160px; MARGIN-RIGHT: 15px; box-shadow: rgba(0, 0, 0, 0.25)0 0 2px; -moz-box-shadow: rgba(0, 0, 0, 0.25)0 0 2px; -webkit-box-shadow: rgba(0, 0, 0, 0.25)0 0 2px
+
+p {
+    display: inline;
 }
-.intro_os3 {
-	MARGIN-RIGHT: 0px
+
+img {
+    width: 100%;
 }
-.intro_os .intro_img {
-	POSITION: absolute; MARGIN: 2px; WIDTH: 296px; HEIGHT: 156px; TOP: 0px
+
+/* Style for our header texts
+* --------------------------------------- */
+h1 {
+    font-size: 5em;
+    font-family: arial, helvetica;
+    color: #fff;
+    position: absolute;
+    margin: 100px 100px;
 }
-.intro_os P {
-	MARGIN-LEFT: 18px
+
+h2 {
+    font-size: 2.5em;
 }
-.intro_title {
-	POSITION: absolute; MARGIN-TOP: 15px; COLOR: #606060; FONT-SIZE: 20px
+
+div {
+    color: #fff;
 }
-.intro_title_a {
-	COLOR: #606060
+
+.intro {
+    margin: 0 1em;
 }
-.intro_title_a:active {
-	COLOR: #606060
+
+.intro p {
+    color: #fff;
 }
-.intro_title_a:visited {
-	COLOR: #606060
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section {
+    text-align: center;
 }
-.intro_title_a:link {
-	COLOR: #606060
+
+/* Defining each section background and styles
+	* --------------------------------------- */
+#section1{
+    background: -webkit-gradient(linear, top left, bottom left, from(#91EAE4), to(#86A8E7));
+    background: -webkit-linear-gradient(#91EAE4, #86A8E7);
+    background: linear-gradient(#91EAE4,#86A8E7);
 }
-.intro_title_a:hover {
-	COLOR: #606060
+
+#section2{
+    background: -webkit-gradient(linear, top left, bottom left, from(#86A8E7), to(#7F7FD5));
+    background: -webkit-linear-gradient(#86A8E7, #7F7FD5);
+    background: linear-gradient(#86A8E7,#7F7FD5);
 }
-.intro_para {
-	POSITION: absolute; LINE-HEIGHT: 18px; MARGIN-TOP: 55px; WIDTH: 130px; DISPLAY: inline; COLOR: #727272; FONT-SIZE: 12px
+
+/* Fixed header and footer.
+* --------------------------------------- */
+#header, #footer {
+    position: fixed;
+    height: 70px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    z-index: 9;
+    text-align: center;
+    color: #f2f2f2;
+    padding: 0 0 0 0;
 }
-.intro_more {
-	POSITION: absolute; WIDTH: 80px; COLOR: #727272; MARGIN-LEFT: 18px; TOP: 120px
+
+#header {
+    display: grid;
+    grid-template-columns: 1fr repeat(1, auto) 1fr;
+    grid-column-gap: 10px;
+    justify-items: center;
+    top: 0px;
 }
-.intro_more:hover {
-	POSITION: absolute; WIDTH: 80px; COLOR: #8a8a8a; TOP: 120px
+
+#footer {
+    bottom: 0px;
 }
-.news_box {
-	BACKGROUND-COLOR: #fff; MARGIN: 10px auto 0px; WIDTH: 930px; HEIGHT: 35px; box-shadow: rgba(0, 0, 0, 0.25)0 0 2px; -moz-box-shadow: rgba(0, 0, 0, 0.25)0 0 2px; -webkit-box-shadow: rgba(0, 0, 0, 0.25)0 0 2px
+
+/* header elements
+* --------------------------------------- */
+
+#header {
+    display: grid;
+    grid-template-columns: 1fr repeat(1, auto) 1fr;
+    align-content: center;
 }
-.news_box .left_box {
-	TEXT-ALIGN: center; MARGIN: 3px 0px; WIDTH: 100px; PADDING-RIGHT: 5px; FLOAT: left; HEIGHT: 28px; BORDER-RIGHT: #e4e4e4 1px solid
+
+#header-center {
+    grid-column-start: 2;
+    text-align: center;
+    display: flex;
 }
-.news_jumplink {
-	MARGIN: 3px 4px 0px 20px; DISPLAY: inline-block; FLOAT: left; HEIGHT: 20px; COLOR: #606060; FONT-SIZE: 16px
+
+#header-center > div {
+    cursor: pointer;
+    margin: 0 1em;
+    height: 2em;
 }
-.news_jumplink:hover {
-	COLOR: #8a8a8a
+
+#header-right {
+    margin-left: auto;
+    margin-right: 2em;
+    display: flex;
 }
-.rightbox {
-	MARGIN-TOP: 11px; WIDTH: 820px; FLOAT: left; HEIGHT: 24px
+
+#header-right div, #header-right a {
+    text-decoration: none;
+    color: white;
+    margin: 0 1em;
 }
-.rightbox .news_arrow {
-	MARGIN: 0px 30px; WIDTH: 8px; DISPLAY: inline-block; FLOAT: left; HEIGHT: 16px
+
+/* Underline From Center */
+.hvr-underline-from-center {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
 }
-.rightbox .news_list {
-	WIDTH: 670px; FLOAT: left
+
+.hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: #ffffff;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
 }
-.rightbox .news_list A {
-	LINE-HEIGHT: 16px; WIDTH: 670px; DISPLAY: block; FLOAT: left; HEIGHT: 16px; COLOR: #606060; FONT-SIZE: 12px
+
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
 }
-.news_list A {
-	DISPLAY: block; FLOAT: left; HEIGHT: 16px; COLOR: #606060
+
+/* footer elements
+* --------------------------------------- */
+
+#footer {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-content: end;
 }
+
+#footer div {
+    margin-bottom: 0.5em;
+}
+
+#footer-left {
+    grid-column-start: 1;
+    text-align: center;
+    display: flex;
+    margin-left: 3em;
+}
+
+#footer-right {
+    margin-left: auto;
+    margin-right: 2em;
+    justify-content: space-around;
+}
+
+#footer-right a {
+    margin: 0 1em;
+}
+
+/* style for section 0
+* --------------------------------------- */
+#slide1 {
+    background-image: url("../assets/pascal-swier-144672-unsplash.jpg");
+    background-size: cover;
+}
+
+/* style for section 1
+* --------------------------------------- */
+.vertically-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.vertically-half div {
+}
+
+#players-info {
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+#players-info div {
+    margin: 0 auto;
+}
+
+#players-info button {
+    grid-column: 1 / 3;
+    font-size: 16px;
+    width: 20em;
+    height: 3em;
+    justify-self: center;
+    border-radius: 1.5em;
+    border: none;
+}
+
+#todays-recommended {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#todays-recommended div {
+
+}
+
+.game-card > div, button {
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.game-card > div:hover, button:hover {
+    box-shadow: 0 20px 30px rgba(0, 0, 0, .25);
+}
+
+.game-card-wrapper {
+    width: 540px;
+    height: 360px;
+    border-radius: 20px;
+}
+
+.game-card-fill {
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/esteban-lopez-478892-unsplash.jpg");
+    background-size: cover;
+    transition: all .5s;
+}
+
+.game-card-wrapper:hover .game-card-fill,
+.game-card-wrapper:focus .game-card-fill {
+    transform: scale(1.1);
+}
+
+/*.hvr-grow-shadow div{*/
+/*display: inline-block;*/
+/*vertical-align: middle;*/
+/*-webkit-transform: perspective(1px) translateZ(0);*/
+/*transform: perspective(1px) translateZ(0);*/
+/*box-shadow: 0 10px 20px rgba(0, 0, 0, .4);*/
+/*-webkit-transition-duration: 0.3s;*/
+/*transition-duration: 0.3s;*/
+/*-webkit-transition-property: box-shadow, transform;*/
+/*transition-property: box-shadow, transform;*/
+/*}*/
+
+/*.hvr-grow-shadow div:hover, .hvr-grow-shadow div:focus, .hvr-grow-shadow div:active {*/
+/*box-shadow: 0 20px 30px rgba(0, 0, 0, .25);*/
+/*-webkit-transform: scale(1.05);*/
+/*transform: scale(1.05);*/
+/*}*/
+
+/* style for section 2
+* --------------------------------------- */
+.six-cells {
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(2, 1fr);
+    align-items: end;
+}
+
+.six-cells h2 {
+    grid-column: 1 / 3;
+}
+
+.six-cells > div {
+    grid-row: 2 / span 2;
+    width: 225px;
+    height: 150px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.six-cells > div:nth-last-child(-n+2) {
+    grid-row: 4 / span 2;
+}
+
+.six-cells > div > div {
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/chase-clark-509092-unsplash.jpg");
+    background-size: cover;
+    transition: all .5s;
+}
+
+.six-cells > div > div:hover,
+.six-cells > div > div:focus {
+    transform: scale(1.1);
+}
+

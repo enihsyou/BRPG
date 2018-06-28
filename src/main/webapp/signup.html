@@ -5,7 +5,7 @@
     <title>SIGN UP</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+    <script src="js/common.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -117,17 +117,15 @@
                     console.log(data);
                     alert(data);
                     if (data === 1) {
-                        $('form').fadeOut(500);
-                        $('.wrapper').addClass('form-success');
+                        $('form, span, a').fadeOut(500);
+                        $('.wrapper').addClass('form-success-signup');
+                        $('.form-success-signup h1').text("注册成功！" + username.val());
                     }
                 }
             });
 
         }
 
-        $('form, span, a').fadeOut(500);
-        $('.wrapper').addClass('form-success-signup');
-        $('.form-success-signup h1').text("注册成功！" + username.val());
 
     });
 </script>

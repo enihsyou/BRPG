@@ -36,7 +36,7 @@
             });
         });
     </script>
-    <link rel="stylesheet" href="css/index2.css" />
+    <link rel="stylesheet" href="css/index.css"/>
 
 </head>
 <body>
@@ -185,11 +185,15 @@
         }]
     });
     // 输出结果
-    console.log(JSON.stringify(data, null, 4))
+    console.log(JSON.stringify(data, null, 4));
 
 
     $(function () {
-        getUsername();
+        const username = localStorage.getItem("username");
+        if (username !== null) {
+            displayUsername(username);
+        }
+
         $.ajax({
             url: 'http://127.0.0.1:8080/brpg/lalala',
             type: 'GET',
@@ -202,11 +206,13 @@
                 $('#current-playing-num').text(data[2]);
             }
         })
-    })
+    });
 
-    function getUsername() {
-        const username = sessionStorage.getItem("username");
-        alert(username);
+    function displayUsername(username) {
+        const header_right = $('#header-right');
+
+        header_right.empty();
+        header_right.append("<a>" + username +"</a>");
     }
 
 
