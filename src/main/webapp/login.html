@@ -83,7 +83,7 @@
         $('form, span, a').fadeOut(500);
         $('.wrapper').addClass('form-success-login');
         $('.form-success-login h1').text("登录成功！");
-        $('.form-success-login h1').html("<div><span>5</span>s后跳转</div>");
+        $('.form-success-login h1').html("<div><span id='counter'>5</span>s后跳转</div>");
 
 
         const username = "admin";
@@ -94,11 +94,12 @@
     });
 
 
-    let x = Number($('div span').html()); //获取到页面的倒计时时间，由于获取到是字符串，需通过Number转换成数字进行接下来计算
+    let x = Number($('#counter').html()); //获取到页面的倒计时时间，由于获取到是字符串，需通过Number转换成数字进行接下来计算
+    console.log()
     function delayURL() {
         x--;
         if (x > 0) {
-            $("div span").html(x);   //将计算后的时间赋值到标签里
+            $("#counter").html(x);   //将计算后的时间赋值到标签里
         } else {
             location.href = 'index.html';  //要跳转的页面
             clearInterval(timer);     //清除定时器
