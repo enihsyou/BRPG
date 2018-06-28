@@ -33,17 +33,19 @@
         }
         function succFunction(data) {
             var json = eval(data); //数组
+            console.log(data);
             var dbody =$("#dbody");
             $.each(json, function (index, item) {
                 //循环获取数据
+                alert(index);
                 var gameName = json[index].gameName;//游戏名字
                 var image = json[index].image;//游戏图片
                 var averageScore = json[index].averageScore;//游戏评分
                 var dl = $('<dl></dl>');
                 dl.append('<dt>'+gameName+'<span>'+"评分："+averageScore+"分"+'</span>'+'</dt>'
-                    +'<dd class="dd0"<img src='+image +'>'+'</dd>'
+                    +'<dd class="dd0"><img src='+image +'>'+'</dd>'
                     +'<dd class="dd1">亲爱的玩家朋友：停机更新工作已进行完毕，我们将提前开启服务器，欢迎大家参与游戏体验。感谢大家对我们游戏的支持与喜爱！</dd>'
-                    +'<dd class="dd2" id="game-detail'+json[index].gameID+'><button >查看详情</button></dd>');
+                    +'<dd class="dd2" id="game-detai'+json[index].gameID+'"><button >查看详情</button></dd>');
                 dbody.append(dl);
                 $('#game-detail' + json[index].gameID).on("click", "button", json[index], function (event) {
                     event.preventDefault();

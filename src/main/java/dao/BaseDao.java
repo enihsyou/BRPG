@@ -14,9 +14,9 @@ public class BaseDao {
     static{
         //数据库连接信息（必须）
         datasource.setDriverClassName("com.mysql.jdbc.Driver");
-        datasource.setUrl("jdbc:mysql://localhost:3306/geek_playstation");
-        datasource.setUsername("root");
-        datasource.setPassword("961021");
+        datasource.setUrl("jdbc:mysql://47.98.190.65/brpg");
+        datasource.setUsername("reggie2333");
+        datasource.setPassword("reggie2333");
         //连接池中的连接数量配置（可选）
         datasource.setInitialSize(10);//初始化的连接数
         datasource.setMaxActive(8);//最大连接数

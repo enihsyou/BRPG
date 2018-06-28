@@ -51,12 +51,19 @@
     font-size:16px;
 }
 .btndiv2 dl dd.dd2 button{
-    color: red;
+    background-color: white;
     text-decoration: none;
+    border: 0px solid #008CBA;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
 }
 .btndiv2 dl dd.dd2 button:hover{
-    text-decoration: underline;
+    background-color: #008CBA;
+    color: white;
 }
+
+
 
 .dd0 img{
     border: 0;
