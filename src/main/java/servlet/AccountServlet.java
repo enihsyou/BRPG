@@ -19,14 +19,16 @@ public class AccountServlet extends BaseServlet{
      * @throws Exception
      */
     public void login(HttpServletRequest req, HttpServletResponse res)throws Exception{
-        String userID=req.getParameter("userID");
+        String userID=req.getParameter("userId");
         String password=req.getParameter("password");
         User user=new User();
         if (user.login(userID,password)){
             //登录成功,将user存入session
             req.getSession().setAttribute("user",user);
+            res.getWriter().write("1");
         }else {
             //登录失败
+            res.getWriter().write("0");
         }
     }
 
@@ -37,14 +39,17 @@ public class AccountServlet extends BaseServlet{
      * @throws Exception
      */
     public void register(HttpServletRequest req,HttpServletResponse res)throws Exception{
-        String userID=req.getParameter("userID");
+        String userID=req.getParameter("userId");
         String password=req.getParameter("password");
         String userName=req.getParameter("userName");
         User user=new User();
         if (user.register(userID,password,userName)){
             //注册成功
+            req.getSession().setAttribute("user",user);
+            res.getWriter().write("1");
         }else {
             //注册失败
+            res.getWriter().write("0");
         }
     }
 

@@ -17,9 +17,9 @@
     var options = {};
     $(function () {
         $.ajax({
-            url: 'http://localhost:8080/brpg/lalala',
+            url: 'http://localhost:8080/brpg/game',
             type: 'GET',
-            data:{method:"getList"},
+            data:{method:"getGameList"},
             dataType: 'json',
             timeout: 1000,
             beforeSend: LoadFunction, //加载执行方法
@@ -52,9 +52,9 @@
                         $('#game-detail' + list[i].gameID).on("click", "button", list[i], function (event) {
                             event.preventDefault();
                             $.ajax({
-                                url: 'http://localhost:8080/brpg/lalala',
+                                url: 'http://localhost:8080/brpg/game',
                                 type: 'POST',
-                                data: {method:"getList",gameID: list[i].gameID},
+                                data: {method:"get",gameID: list[i].gameID},
                                 timeout: 3000,
                                 success: function (data) {
                                     if (data==='1')
