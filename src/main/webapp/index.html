@@ -2,7 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>修仙娱乐</title>
 
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css"/>
@@ -28,15 +31,15 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
+                anchors: ['firstPage', 'secondPage', '3rdPage'],
                 css3: true,
                 navigation: true,
                 navigationPosition: 'right',
-                navigationTooltips: ['首页', '玩家', '推荐', '其他']
+                navigationTooltips: ['首页', '玩家', '推荐']
             });
         });
     </script>
-    <link rel="stylesheet" href="css/index2.css" />
+    <link rel="stylesheet" href="css/index.css"/>
 
 </head>
 <body>
@@ -69,20 +72,19 @@
     <div id="fullpage">
         <div class="section" id="section0">
             <div class="slide" id="slide1" data-anchor="slide1">
-                <div class="intro">
-                </div>
+                <div class="img-area"></div>
             </div>
 
             <div class="slide" id="slide2" data-anchor="slide2">
-                <h1>Slide 2</h1>
+                <div class="img-area"></div>
             </div>
 
             <div class="slide" id="slide3" data-anchor="slide3">
-                <h1>Slide 3</h1>
+                <div class="img-area"></div>
             </div>
 
             <div class="slide" id="slide4" data-anchor="slide4">
-                <h1>Slide 4</h1>
+                <div class="img-area"></div>
             </div>
         </div>
 
@@ -91,13 +93,12 @@
                 <div id="players-info">
                     <div></div>
                     <div></div>
-                    <div>平台所有玩家</div>
+                    <div class="info-tag">平台所有玩家</div>
                     <div id="all-players-num">2</div>
-                    <div>当前在线人数</div>
+                    <div class="info-tag">当前在线人数</div>
                     <div id="current-online-num">4</div>
-                    <div>当前游戏中人数</div>
+                    <div class="info-tag">当前游戏中人数</div>
                     <div id="current-playing-num">6</div>
-                    <!--<button>立即加入</button>-->
                 </div>
                 <div id="todays-recommended" class="game-card">
                     <h2>今日推荐</h2>
@@ -145,11 +146,11 @@
             </div>
         </div>
 
-        <div class="section" id="section3">
-            <div class="intro">
-                <h1>The End</h1>
-            </div>
-        </div>
+        <!--<div class="section" id="section3">-->
+            <!--<div class="intro">-->
+                <!--<h1>The End</h1>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -185,11 +186,15 @@
         }]
     });
     // 输出结果
-    console.log(JSON.stringify(data, null, 4))
+    console.log(JSON.stringify(data, null, 4));
 
 
     $(function () {
-        getUsername();
+        const username = localStorage.getItem("username");
+        if (username !== null) {
+            displayUsername(username);
+        }
+
         $.ajax({
             url: 'http://127.0.0.1:8080/brpg/lalala',
             type: 'GET',
@@ -202,11 +207,13 @@
                 $('#current-playing-num').text(data[2]);
             }
         })
-    })
+    });
 
-    function getUsername() {
-        const username = sessionStorage.getItem("username");
-        alert(username);
+    function displayUsername(username) {
+        const header_right = $('#header-right');
+
+        header_right.empty();
+        header_right.append("<a>" + username +"</a>");
     }
 
 

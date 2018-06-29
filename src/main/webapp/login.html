@@ -5,7 +5,7 @@
     <title>LOGIN</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+    <script src="js/common.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -39,7 +39,6 @@
     const email = $("#email");
     const password = $("#password");
 
-
     email.blur(function () {
         console.log(this.value);
         const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
@@ -69,42 +68,21 @@
                 timeout: 3000,
                 dataType: 'json',
                 success: function (data) {  //成功执行方法
-                    console.log(data);
-                    alert(data);
                     if (data === 1) {
-                        $('form').fadeOut(500);
-                        $('.wrapper').addClass('form-success');
+                        $('form, span, a').fadeOut(500);
+                        $('.wrapper').addClass('form-success-login');
+                        $('.form-success-login h1').html("登录成功！" + "<span>3</span>s后跳转");
+
+                        const username = "admin";
+                        localStorage.setItem('username', username);
+
+                        const timer = setInterval(delayURL, 1000);
                     }
                 }
-            });
-
+            })
         }
-
-        $('form, span, a').fadeOut(500);
-        $('.wrapper').addClass('form-success-login');
-        $('.form-success-login h1').text("登录成功！");
-        $('.form-success-login h1').html("<div><span id='counter'>5</span>s后跳转</div>");
-
-
-        const username = "admin";
-        sessionStorage.setItem('username', username);
-
-        const timer = setInterval(delayURL, 1000);
-
     });
 
-
-    let x = Number($('#counter').html()); //获取到页面的倒计时时间，由于获取到是字符串，需通过Number转换成数字进行接下来计算
-    console.log()
-    function delayURL() {
-        x--;
-        if (x > 0) {
-            $("#counter").html(x);   //将计算后的时间赋值到标签里
-        } else {
-            location.href = 'index.html';  //要跳转的页面
-            clearInterval(timer);     //清除定时器
-        }
-    }
 
 </script>
 </html>
