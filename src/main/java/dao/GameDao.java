@@ -16,13 +16,38 @@ public class GameDao {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
     //读游戏列表（id、name、image、缺scorelist）
     public List<Game> readGameList(){
-        List<Game> gameList = new ArrayList<Game>();
+        List<Game> gameList=new ArrayList<>();
+        String sql="SELECT * FROM game";
+        try (
+                Connection conn = BaseDao.getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+
+            try(
+                    ResultSet resultSet=pstmt.executeQuery()
+            ){
+                while (resultSet.next()){
+                    Game game=new Game();
+                    game.setGameID(Integer.toString(resultSet.getInt("Game_Id")));
+                    game.setImage(resultSet.getString("Game_Image"));
+                    game.setSynopsis(resultSet.getString("Game_Synopsis"));
+                    game.setGameName(resultSet.getString("Game_Name"));
+                    gameList.add(game);
+                }
+                resultSet.close();
+                pstmt.close();
+                conn.close();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        /*List<Game> gameList = new ArrayList<Game>();
         String sql="select Game_Id,Game_Image,Game_Name from game";
         try {
             gameList=qr.query(sql,new BeanListHandler<Game>(Game.class));
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         return gameList;
     }
 

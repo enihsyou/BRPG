@@ -5,11 +5,12 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class BaseDao {
     //创建BasicDataSource类对象
     private static BasicDataSource datasource = new BasicDataSource();
-   // static Connection conn=null;
+    static Connection conn=null;
     //静态代码块，对象BasicDataSource对象中的配置
     static{
         //数据库连接信息（必须）
@@ -28,5 +29,11 @@ public class BaseDao {
         return datasource;
     }
 
+    public static Connection getConnection() throws SQLException {
+        conn=datasource.getConnection();
+        return conn;
+
+
+    }
 
 }
