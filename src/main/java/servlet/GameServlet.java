@@ -61,6 +61,12 @@ public class GameServlet extends BaseServlet {
        res.getWriter().write(gameListJson);
     }
 
+    public void toGameInfo(HttpServletRequest req,HttpServletResponse res)throws Exception{
+        String gameID=req.getParameter("gameID");
+        req.getSession().setAttribute("gameID",gameID);
+        res.getWriter().write("1");
+    }
+
     /**
      * 获取游戏详情
      * @param req 参数：gameID
@@ -68,7 +74,7 @@ public class GameServlet extends BaseServlet {
      * @throws Exception
      */
     public void getGameInfo(HttpServletRequest req,HttpServletResponse res)throws Exception{
-        String gameID=req.getParameter("gameID");
+        String gameID= (String) req.getSession().getAttribute("gameID");
         GameDao dao=new GameDao();
         Game game=dao.readGameDetails(gameID);
         GameCommentList gcl=new GameCommentList();
