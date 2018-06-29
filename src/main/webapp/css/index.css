@@ -14,6 +14,13 @@ img {
     width: 100%;
 }
 
+.fp-controlArrow.fp-prev {
+    left: 40px;
+}
+.fp-controlArrow.fp-next {
+    right: 40px;
+}
+
 /* Style for our header texts
 * --------------------------------------- */
 h1 {
@@ -48,6 +55,10 @@ div {
 
 /* Defining each section background and styles
 	* --------------------------------------- */
+#section0{
+    background: linear-gradient(#0097b0,#91EAE4);
+}
+
 #section1{
     background: -webkit-gradient(linear, top left, bottom left, from(#91EAE4), to(#86A8E7));
     background: -webkit-linear-gradient(#91EAE4, #86A8E7);
@@ -184,9 +195,29 @@ div {
 
 /* style for section 0
 * --------------------------------------- */
-#slide1 {
-    background-image: url("../assets/pascal-swier-144672-unsplash.jpg");
+.img-area {
+    height: 80%;
+    margin: 7%;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
+    overflow: hidden;
     background-size: cover;
+}
+
+#slide1 .img-area{
+    background-image: url("../assets/game-images/five.png");
+}
+
+#slide2 .img-area{
+    background-image: url("../assets/game-images/shendu.jpg");
+}
+
+#slide3 .img-area{
+    background-image: url("../assets/game-images/stardew2.png");
+}
+
+#slide4 .img-area{
+    background-image: url("../assets/game-images/dontStarve.jpg");
 }
 
 /* style for section 1
@@ -220,15 +251,18 @@ div {
     border: none;
 }
 
+.info-tag {
+    width: 10em;
+    padding: 1em 2em;
+    border: 2px solid white;
+    border-radius: 3em;
+}
+
 #todays-recommended {
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
     align-items: center;
     justify-content: center;
-
-}
-
-#todays-recommended div {
 
 }
 
