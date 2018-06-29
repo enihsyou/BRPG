@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dao.GameDao;
 import javabean.Game;
 import javabean.GameComment;
+import javabean.GameCommentList;
 import javabean.User;
 
 import javax.servlet.annotation.WebServlet;
@@ -27,10 +28,10 @@ public class GameServlet extends BaseServlet {
      */
     public void getGameList(HttpServletRequest req, HttpServletResponse res)throws Exception{
         GameDao dao=new GameDao();
-//        List<Game> gameList=dao.readGameList();
+        List<Game> gameList=dao.readGameList();
         Gson gson=new Gson();
-//        String gameListJson=gson.toJson(gameList);
-//        res.getWriter().write(gameListJson);
+        String gameListJson=gson.toJson(gameList);
+        res.getWriter().write(gameListJson);
     }
 
     /**
@@ -41,7 +42,7 @@ public class GameServlet extends BaseServlet {
      */
     public void getGameListByOrder(HttpServletRequest req,HttpServletResponse res)throws Exception{
         GameDao dao=new GameDao();
-//        List<Game> gameList=dao.readGameList();
+        List<Game> gameList=dao.readGameList();
         Comparator<Game> comparator=new Comparator<Game>() {
             @Override
             public int compare(Game o1, Game o2) {
@@ -54,10 +55,10 @@ public class GameServlet extends BaseServlet {
                 }
             }
         };
-//        gameList.sort(comparator);
+        gameList.sort(comparator);
         Gson gson=new Gson();
-//        String gameListJson=gson.toJson(gameList);
-//        res.getWriter().write(gameListJson);
+        String gameListJson=gson.toJson(gameList);
+       res.getWriter().write(gameListJson);
     }
 
     /**
@@ -70,6 +71,9 @@ public class GameServlet extends BaseServlet {
         String gameID=req.getParameter("gameID");
         GameDao dao=new GameDao();
         Game game=dao.readGameDetails(gameID);
+        GameCommentList gcl=new GameCommentList();
+        gcl.setGameCommentList(dao.readComments(gameID));
+        game.setGameCommentList(gcl);
         Gson gson=new Gson();
         String gameJson=gson.toJson(game);
         res.getWriter().write(gameJson);

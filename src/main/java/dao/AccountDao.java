@@ -18,10 +18,28 @@ public class AccountDao  {
     private static QueryRunner qr = new QueryRunner(BaseDao.getDataSource());
     //读取账户信息
     public User readAccount(String userID){
-        User user=null;
+        User user=new User();
         String sql = "select * from user where User_Id=?";
-        try {
-            user=qr.query(sql,new BeanHandler<User>(User.class), userID);
+        try (
+                Connection conn=BaseDao.getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql);
+                ){
+            pstmt.setString(1,userID);
+
+            try(
+
+                    ResultSet resultSet=pstmt.executeQuery()
+            ){
+                if (resultSet.next()){
+                 user.setUserID(userID);
+                 user.setPassword(resultSet.getString("Password"));
+                 user.setUserName(resultSet.getString("User_Name"));
+                 user.setHeadPortrait(resultSet.getString("User_Image"));
+                 user.setAdvancedPermission(!(resultSet.getInt("Priority")==1));
+                 user.setSignature(resultSet.getString("User_Synopsis"));
+                 user.setScore(resultSet.getInt("User_Score"));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
 
