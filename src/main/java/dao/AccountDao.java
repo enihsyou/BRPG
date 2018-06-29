@@ -1,6 +1,8 @@
 package dao;
 
 import javabean.Collection;
+import javabean.Game;
+import javabean.GameComment;
 import javabean.User;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
@@ -48,18 +50,36 @@ public class AccountDao  {
     }
     //读取用户收藏
     public Collection readCollection(String userID){
-        Collection collection=null;
+        Collection collection=new Collection();
+        List<Game> gameList=new ArrayList<>();
         String sql = "select * from collection where User_Id=?";
-        try {
-            collection=qr.query(sql,new BeanHandler<Collection>(Collection.class), userID);
-        } catch (SQLException e) {
+        try (
+                Connection conn = BaseDao.getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,userID);
+
+            try(
+                    ResultSet resultSet=pstmt.executeQuery()
+            ){
+                while (resultSet.next()){
+                    GameDao gameDao=new GameDao();
+                    gameList.add(gameDao.readGameDetails(Integer.toString(resultSet.getInt("Game_Id"))));
+                }
+                resultSet.close();
+                pstmt.close();
+                conn.close();
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
+        collection.setGameList(gameList);
         return collection;
 
     }
     //写入收藏
     public boolean setCollection(String userID, String gameID){
+
         String sql="insert into collection values(?,?)";
         try {
             Object[] params = {userID,gameID};
