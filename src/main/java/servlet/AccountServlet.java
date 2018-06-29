@@ -25,7 +25,7 @@ public class AccountServlet extends BaseServlet{
         if (user.login(userID,password)){
             //登录成功,将user存入session
             req.getSession().setAttribute("user",user);
-            res.getWriter().write("1");
+            res.getWriter().write(user.getUserName());
         }else {
             //登录失败
             res.getWriter().write("0");
@@ -46,7 +46,7 @@ public class AccountServlet extends BaseServlet{
         if (user.register(userID,password,userName)){
             //注册成功
             req.getSession().setAttribute("user",user);
-            res.getWriter().write("1");
+            res.getWriter().write(userName);
         }else {
             //注册失败
             res.getWriter().write("0");

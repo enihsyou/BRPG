@@ -288,7 +288,7 @@ div {
 .game-card-fill {
     width: 100%;
     height: 100%;
-    background-image: url("../assets/esteban-lopez-478892-unsplash.jpg");
+    background-image: url("../assets/game-images/bilan2.jpg");
     background-size: cover;
     transition: all .5s;
 }
@@ -343,7 +343,6 @@ div {
 .six-cells > div > div {
     width: 100%;
     height: 100%;
-    background-image: url("../assets/chase-clark-509092-unsplash.jpg");
     background-size: cover;
     transition: all .5s;
 }
@@ -351,5 +350,30 @@ div {
 .six-cells > div > div:hover,
 .six-cells > div > div:focus {
     transform: scale(1.1);
+}
+
+#img1 {
+    background-image: url("../assets/game-images/minecraft.jpg");
+}
+#img2 {
+    background-image: url("../assets/game-images/feiren.jpg");
+}
+#img3 {
+    background-image: url("../assets/game-images/five2.jpg");
+}
+#img4 {
+    background-image: url("../assets/game-images/stardew.jpg");
+}
+#img5 {
+    background-image: url("../assets/game-images/juedi.jpg");
+}
+#img6 {
+    background-image: url("../assets/game-images/musedash.jpg");
+}
+#img7 {
+    background-image: url("../assets/game-images/bilan.jpg");
+}
+#img8 {
+    background-image: url("../assets/game-images/chuliuxiang.jpg");
 }
 
