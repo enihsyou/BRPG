@@ -48,8 +48,8 @@
                     for(var i=0;i<list.length;i++){
                         cHtml += "<dl><dt>" + list[i].gameName +'<span>'+"评分："+list[i].averageScore+"分"+'</span>'+"</dt>";//处理数据
                         cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
-                        cHtml += '<dd class="dd2" id="game-detail'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
-                        $('#game-detail' + list[i].gameID).on("click", "button", list[i], function (event) {
+                        cHtml += '<dd class="dd2" id="game-detail0'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
+                        $('#game-detail0' + list[i].gameID).on("click", "button", list[i], function (event) {
                             event.preventDefault();
                             $.ajax({
                                 url: 'http://localhost:8080/brpg/game',
@@ -108,7 +108,7 @@
                         cHtml += "<dl><dt>" + list[i].gameName +'<span>'+"评分："+list[i].averageScore+"分"+'</span>'+"</dt>";//处理数据
                         cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
                         cHtml += '<dd class="dd2" id="game-detail'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
-                        $('#game-detail' + list[i].gameID).click(function(){
+                        $('#game-detail' + list[i].gameID).on("click",function(){
                             var text = $(this).text();
                             alert("点击！");
                             //event.preventDefault();
