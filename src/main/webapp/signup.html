@@ -100,7 +100,7 @@
         event.preventDefault();
 
         if (email.val() === "" || username.val() === "" || password.val() === "" || confirm_pw.val() === "") {
-            alert("请填写完整");
+            alert("不填完整不给注册哦");
         }
         else {
             $.ajax({
@@ -115,12 +115,12 @@
                 timeout: 3000,
                 dataType: 'json',
                 success: function (data) {  //成功执行方法
-                    if (data === 1) {
+                    if (data !== 0) {
                         $('form, span, a').fadeOut(500);
                         $('.wrapper').addClass('form-success-signup');
                         $('.form-success-signup h1').html("注册成功！" + "<span>3</span>s后跳转");
 
-                        const username = "admin";
+                        const username = username.val();
                         localStorage.setItem('username', username);
 
                         const timer = setInterval(delayURL, 1000);

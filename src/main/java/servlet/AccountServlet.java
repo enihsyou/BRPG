@@ -25,7 +25,10 @@ public class AccountServlet extends BaseServlet{
         if (user.login(userID,password)){
             //登录成功,将user存入session
             req.getSession().setAttribute("user",user);
-            res.getWriter().write(user.getUserName());
+            res.setContentType("application/json");
+            res.getWriter().write(String.format("{\n" +
+                "  \"username\": \"%s\"\n" +
+                "}", user.getUserName()));
         }else {
             //登录失败
             res.getWriter().write("0");

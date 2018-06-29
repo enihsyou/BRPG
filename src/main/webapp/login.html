@@ -52,10 +52,8 @@
     $("#login-button").click(function (event) {
         event.preventDefault();
 
-        if (email.val() === "")
-            alert("邮箱为空");
-        else if (password.val() === "")
-            alert("密码为空");
+        if (email.val() === "" || password.val() === "")
+            alert("不填完整不给登录哦");
         else {
             $.ajax({
                 url: 'http://localhost:8080/brpg/account',
@@ -68,15 +66,18 @@
                 timeout: 3000,
                 dataType: 'json',
                 success: function (data) {  //成功执行方法
-                    if (data === 1) {
+                    if (data !== 0) {
                         $('form, span, a').fadeOut(500);
                         $('.wrapper').addClass('form-success-login');
                         $('.form-success-login h1').html("登录成功！" + "<span>3</span>s后跳转");
 
-                        const username = "admin";
+                        const username = data.username;
                         localStorage.setItem('username', username);
 
                         const timer = setInterval(delayURL, 1000);
+                    }
+                    else {
+                        alert("登录失败 密码错误");
                     }
                 }
             })
