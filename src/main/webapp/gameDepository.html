@@ -49,12 +49,14 @@
                         cHtml += "<dl><dt>" + list[i].gameName +'<span>'+"评分："+list[i].averageScore+"分"+'</span>'+"</dt>";//处理数据
                         cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
                         cHtml += '<dd class="dd2" id="game-detail0'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
-                        $('#game-detail0' + list[i].gameID).on("click", "button", list[i], function (event) {
+                        // $('#game-detail0' + list[i].gameID).on("click", "button", list[i], function (event) {
+                        $('#game-detail0101').on("click", "button", list[0], function (event) {
+                            alert("click");
                             event.preventDefault();
                             $.ajax({
                                 url: 'http://localhost:8080/brpg/game',
                                 type: 'POST',
-                                data: {method:"toGameInfo",gameID: list[i].gameID},
+                                data: {method:"toGameInfo",gameID: list[0].gameID},
                                 timeout: 3000,
                                 success: function (data) {
                                     console.log(data);
@@ -108,7 +110,7 @@
                         cHtml += "<dl><dt>" + list[i].gameName +'<span>'+"评分："+list[i].averageScore+"分"+'</span>'+"</dt>";//处理数据
                         cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
                         cHtml += '<dd class="dd2" id="game-detail'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
-                        $('#game-detail' + list[i].gameID).on("click",function(){
+                        $('#game-detail' + list[0].gameID).click(function(){
                             var text = $(this).text();
                             alert("点击！");
                             //event.preventDefault();
@@ -117,11 +119,11 @@
                                 type: 'POST',
                                 data: {
                                     method:"toGameInfo",
-                                    gameID: list[i].gameID
+                                    gameID: list[0].gameID
                                 },
                                 timeout: 3000,
                                 error: function(error){
-                                    alert(error);
+                                    //alert(error);
                                 },
                                 success: function (data) {
                                     console.log(data);

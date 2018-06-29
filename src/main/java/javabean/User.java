@@ -106,7 +106,13 @@ public class User {
      */
     public boolean register(String userID, String password, String userName) {
         AccountDao dao = new AccountDao();
-        return dao.writeAccount(userID, password, userName);
+        final boolean succeed = dao.writeAccount(userID, password, userName);
+        if (succeed) {
+            this.setUserName(userName);
+            this.setUserID(userID);
+            this.setPassword(password);
+        }
+        return succeed;
     }
 
     /**

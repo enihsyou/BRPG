@@ -1,0 +1,26 @@
+{
+  "name": "brpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReggieTAT/BRPG.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReggieTAT/BRPG/issues"
+  },
+  "homepage": "https://github.com/ReggieTAT/BRPG#readme",
+  "dependencies": {
+    "less": "^3.0.4",
+    "mockjs": "^1.0.1-beta3"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.0.1"
+  }
+}

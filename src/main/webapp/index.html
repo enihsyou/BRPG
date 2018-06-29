@@ -47,8 +47,10 @@
             <div class="hvr-underline-from-center">社区中心</div>
         </div>
         <div id="header-right">
-            <a href="login.html">登录</a>
-            <a href="signup.html">注册</a>
+            <a href="#" id="header-username"></a>
+            <a href="login.html" id="header-login-button">登录</a>
+            <a href="signup.html" id="header-signup-button">注册</a>
+            <a href="#" id="header-logout-button">登出</a>
         </div>
     </div>
     <div id="footer">
@@ -141,9 +143,9 @@
         </div>
 
         <!--<div class="section" id="section3">-->
-            <!--<div class="intro">-->
-                <!--<h1>The End</h1>-->
-            <!--</div>-->
+        <!--<div class="intro">-->
+        <!--<h1>The End</h1>-->
+        <!--</div>-->
         <!--</div>-->
 
     </div>
@@ -171,22 +173,19 @@
         });
     });
 
-
-    const data = Mock.mock({
-        // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-        'list|1-10': [{
-            // 属性 id 是一个自增数，起始值为 1，每次增 1
-            'id|+1': 1
-        }]
-    });
-    // 输出结果
-    console.log(JSON.stringify(data, null, 4));
-
-
     $(function () {
         const username = localStorage.getItem("username");
-        if (username !== null) {
-            displayUsername(username);
+        if (username) { // 已登入
+            $('#header-username').text(username); // 把用户名显示出来
+            // 隐藏其他按键
+            $('#header-login-button').hide();
+            $('#header-signup-button').hide();
+            $('#header-logout-button').show();
+        } else { // 未登录
+            $('#header-username').text('');
+            $('#header-login-button').show();
+            $('#header-signup-button').show();
+            $('#header-logout-button').hide();
         }
 
         $.ajax({
@@ -203,13 +202,10 @@
         })
     });
 
-    function displayUsername(username) {
-        const header_right = $('#header-right');
-
-        header_right.empty();
-        header_right.append("<a>" + username +"</a>");
-    }
-
+    $("#header-logout-button").click(function () {
+        localStorage.clear();
+        location.reload();
+    });
 
 </script>
 </html>
