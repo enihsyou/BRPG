@@ -37,7 +37,7 @@
             console.log(data);
             var dbody0 =$("#dbody0");
             options = {
-                "id": "page0",//显示页码的元素
+                "id": "page",//显示页码的元素
                 "data":json ,//显示数据
                 "maxshowpageitem": 3,//最多显示的页码个数
                 "pagelistcount": 5,//每页显示数据个数
@@ -53,9 +53,10 @@
                             $.ajax({
                                 url: 'http://localhost:8080/brpg/game',
                                 type: 'POST',
-                                data: {method:"get",gameID: list[i].gameID},
+                                data: {method:"toGameInfo",gameID: list[i].gameID},
                                 timeout: 3000,
                                 success: function (data) {
+                                    console.log(data);
                                     if (data==='1')
                                         window.location.href = "http://localhost:8080/gamedetial.html";
                                     else alert("请求失败");
@@ -77,7 +78,7 @@
         $.ajax({
             url: 'http://localhost:8080/brpg/game',
             type: 'GET',
-            data:{method:"getGameList"},
+            data:{method:"getGameListByOrder"},
             dataType: 'json',
             timeout: 1000,
             beforeSend: LoadFunction, //加载执行方法
@@ -107,13 +108,18 @@
                         cHtml += '<dd class="dd0"><img src='+list[i].image +'>'+'</dd>';
                         cHtml += '<dd class="dd2" id="game-detai'+list[i].gameID+'"><button >查看详情</button></dd></dl>';
                         $('#game-detail' + list[i].gameID).on("click", "button", list[i], function (event) {
+                            alert("点击！");
                             event.preventDefault();
                             $.ajax({
                                 url: 'http://localhost:8080/brpg/game',
                                 type: 'POST',
-                                data: {method:"get",gameID: list[i].gameID},
+                                data: {method:"toGameInfo",gameID: list[i].gameID},
                                 timeout: 3000,
+                                error: function(error){
+                                    alert(error);
+                                },
                                 success: function (data) {
+                                    console.log(data);
                                     if (data==='1')
                                         window.location.href = "http://localhost:8080/gamedetial.html";
                                     else alert("请求失败");
@@ -141,7 +147,7 @@
         <h3 >按评分</h3>
         <div class="btndiv2" id="dbody0" style="display:block" >
         </div>
-        <ul class="page" id="page0" style="padding-left: 150px;"></ul>
+
         <div class="btndiv2" id="dbody">
         </div>
         <ul class="page" id="page" style="padding-left: 150px;"></ul>
