@@ -1,126 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <title>SIGN UP</title>
+    <title>大爷来注册啦</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/common.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container" style="padding: 40px 0">
-            <h1>注册</h1>
-            <form class="form">
-                <input type="email" id="email" placeholder="E-mail" autocomplete="email" value="a4@a.com">
-                <input type="text" id="username" placeholder="Username" value="aaa">
-                <input type="password" id="password" placeholder="Password" autocomplete="new-password" value="aaa">
-                <input type="password" id="confirm-pw" placeholder="Confirm Password" value="aaa">
-                <button type="submit" id="signup-button">Sign Up</button>
-            </form>
-            <span>已有账号？立即</span>
-            <a href="login.html">登录</a>
-        </div>
-
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+<div class="wrapper">
+    <div class="container" style="padding: 40px 0;">
+        <h1>注册</h1>
+        <form class="form">
+            <input type="email" id="email" placeholder="E-mail" autocomplete="email" value="a4@a.com">
+            <input type="text" id="username" placeholder="Username" value="aaa">
+            <input type="password" id="password" placeholder="Password" autocomplete="new-password" value="aaa">
+            <input type="password" id="confirm-pw" placeholder="Confirm Password" value="aaa">
+            <button type="submit" id="signup-button">立即注册</button>
+        </form>
+        <span>已有账号？立即</span>
+        <a href="login.html">登录</a>
     </div>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 
 </body>
 <script>
-    const email = $("#email");
-    const username = $('#username');
-    const password = $("#password");
-    const confirm_pw = $("#confirm-pw");
+const email = $("#email");
+const username = $('#username');
+const password = $("#password");
+const confirm_pw = $("#confirm-pw");
 
-    email.blur(function () {
+email.blur(function () {
+  const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
+  if (email.val()) {
+    if (!pattern.test(this.value)) {
+      email.addClass("invalid-display");
+    } else {
+      email.removeClass("invalid-display");
+    }
+  }
+});
 
-        const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
-        if (email.val()) {
-            if (!pattern.test(this.value)) {
-                email.addClass("invalid-display");
-            } else {
-                email.removeClass("invalid-display");
-            }
-        }
-    });
+password.blur(function () {
+  if (password.val() && confirm_pw.val()) {
+    if (confirm_pw.val() !== password.val()) {
+      password.addClass("invalid-display");
+      confirm_pw.addClass("invalid-display");
+    } else {
+      password.removeClass("invalid-display");
+      confirm_pw.removeClass("invalid-display");
+    }
+  }
+});
 
-    password.blur(function () {
-        if (password.val() && confirm_pw.val()) {
-            if (confirm_pw.val() !== password.val()) {
-                password.addClass("invalid-display");
-                confirm_pw.addClass("invalid-display");
-            } else {
-                password.removeClass("invalid-display");
-                confirm_pw.removeClass("invalid-display");
-            }
-        }
-    });
+confirm_pw.blur(function () {
+  if (confirm_pw.val()) {
+    if (confirm_pw.val() !== password.val()) {
+      password.addClass("invalid-display");
+      confirm_pw.addClass("invalid-display");
+    } else {
+      password.removeClass("invalid-display");
+      confirm_pw.removeClass("invalid-display");
+    }
+  }
+});
 
-    confirm_pw.focus(function () {
-        if (password.val()) {
-            password.addClass("invalid-display");
-        } else {
-            password.removeClass("invalid-display");
-        }
-    });
+$('#signup-button').click(function (event) {
+  event.preventDefault()
 
-    confirm_pw.blur(function () {
-        if (confirm_pw.val()) {
-            if (confirm_pw.val() !== password.val()) {
-                password.addClass("invalid-display");
-                confirm_pw.addClass("invalid-display");
-            } else {
-                password.removeClass("invalid-display");
-                confirm_pw.removeClass("invalid-display");
-            }
-        }
-    });
+  if (!email.val() || !username.val() || !password.val() || !confirm_pw.val()) {
+    alert("不填完整不给注册哦");
+    return
+  }
 
-    $("#signup-button").click(function (event) {
-        event.preventDefault();
+  $.ajax({
+    url: 'http://localhost:8080/brpg/account',
+    type: 'POST',
+    data: {
+      method: "register",
+      userId: email.val(),
+      userName: username.val(),
+      password: password.val()
+    },
+    timeout: 3000,
+    dataType: 'json',
+    success: function (data) {  //成功执行方法
+      if (!data) {
+        console.error(`${data} 为空`)
+        return
+      }
 
-        if (email.val() === "" || username.val() === "" || password.val() === "" || confirm_pw.val() === "") {
-            alert("不填完整不给注册哦");
-        }
-        else {
-            $.ajax({
-                url: 'http://localhost:8080/brpg/account',
-                type: 'POST',
-                data: {
-                    method: "register",
-                    userId: email.val(),
-                    userName: username.val(),
-                    password: password.val()
-                },
-                timeout: 3000,
-                dataType: 'json',
-                success: function (data) {  //成功执行方法
-                    console.log(data);
-                    if (data) {
-                        $('form, span, a').fadeOut(500);
-                        $('.wrapper').addClass('form-success-signup');
-                        $('.form-success-signup h1').html("注册成功！" + "<span>3</span>s后跳转");
+      $('form, span, a').fadeOut(500)
+      $('.wrapper').addClass('form-success-signup')
+      $('.form-success-signup h1').html('注册成功！' + '<span>3</span>s后跳转')
 
-                        const username = data.username;
-                        localStorage.setItem('username', username);
-
-                        const timer = setInterval(delayURL, 1000);
-                    }
-                }
-            });
-        }
-
-    });
+      const username = data.username
+      localStorage.setItem('username', username)
+      setInterval(delayURL, 1000)
+    },
+  })
+})
 </script>
 </html>

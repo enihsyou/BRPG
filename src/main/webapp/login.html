@@ -8,81 +8,83 @@
     <script src="js/common.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <h1>登录</h1>
-            <form class="form">
-                <input type="email" id="email" placeholder="E-mail">
-                <input type="password" id="password" placeholder="Password">
-                <button type="submit" id="login-button">Login</button>
-            </form>
-            <span>没有账号？免费</span>
-            <a href="signup.html">注册</a>
-        </div>
-
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+<div class="wrapper">
+    <div class="container">
+        <h1>登录</h1>
+        <form class="form">
+            <input type="email" id="email" placeholder="E-mail">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit" id="login-button">Login</button>
+        </form>
+        <span>没有账号？免费</span>
+        <a href="signup.html">注册</a>
     </div>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 
 </body>
 <script>
-    const email = $("#email");
-    const password = $("#password");
+const email = $("#email");
+const password = $("#password");
 
-    email.blur(function () {
-        console.log(this.value);
-        const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
-        if (!pattern.test(this.value)) {
-            email.addClass("invalid-display");
-        } else {
-            email.removeClass("invalid-display");
-        }
-    });
+email.blur(function () {
+  const pattern = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
+  if (!pattern.test(this.value)) {
+    email.addClass("invalid-display");
+  } else {
+    email.removeClass("invalid-display");
+  }
+});
 
-    $("#login-button").click(function (event) {
-        event.preventDefault();
+$("#login-button").click(function (event) {
+  event.preventDefault();
 
-        if (email.val() === "" || password.val() === "")
-            alert("不填完整不给登录哦");
-        else {
-            $.ajax({
-                url: 'http://localhost:8080/brpg/account',
-                type: 'POST',
-                data: {
-                    method: "login",
-                    userId: email.val(),
-                    password: password.val()
-                },
-                timeout: 3000,
-                dataType: 'json',
-                success: function (data) {  //成功执行方法
-                    if (data !== 0) {
-                        $('form, span, a').fadeOut(500);
-                        $('.wrapper').addClass('form-success-login');
-                        $('.form-success-login h1').html("登录成功！" + "<span>3</span>s后跳转");
+  const input_email = email.val()
+  const input_password = password.val()
 
-                        const username = data.username;
-                        localStorage.setItem('username', username);
+  if (!(input_email && input_password)) {
+    alert("不填完整不给登录哦");
+    return
+  }
 
-                        const timer = setInterval(delayURL, 1000);
-                    }
-                    else {
-                        alert("登录失败 密码错误");
-                    }
-                }
-            })
-        }
-    });
+  $.ajax({
+    url: 'http://localhost:8080/brpg/account',
+    type: 'POST',
+    data: {
+      method: "login",
+      userId: input_email,
+      password: input_password
+    },
+    timeout: 3000,
+    dataType: 'json',
+    success: function (data) {  //成功执行方法
+      if (!data) {
+        console.error(`${data} 为空`)
+        alert("登录失败 密码错误");
+        return
+      }
+
+      $('form, span, a').fadeOut(500);
+      $('.wrapper').addClass('form-success-login');
+      $('.form-success-login h1').html("登录成功！" + "<span>3</span>s后跳转");
+      const username = data.username;
+      localStorage.setItem('username', username);
+      setInterval(delayURL, 1000);
+    }
+  })
+});
 
 
 </script>

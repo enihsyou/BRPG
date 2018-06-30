@@ -93,6 +93,7 @@ form {
   z-index: 2;
 }
 form input {
+  display: block;
   appearance: none;
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -101,7 +102,6 @@ form input {
   border-radius: 2em;
   padding: 10px 15px;
   margin: 0 auto 20px auto;
-  display: block;
   text-align: center;
   font-size: 18px;
   color: white;
@@ -220,7 +220,7 @@ form button:hover {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-700px) rotate(600deg);
+    transform: translateY(-120vh) rotate(600deg);
   }
 }
 @keyframes square {
@@ -228,7 +228,7 @@ form button:hover {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-700px) rotate(600deg);
+    transform: translateY(-120vh) rotate(600deg);
   }
 }
 /*# sourceMappingURL=login.css.map */
