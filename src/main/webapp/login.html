@@ -79,7 +79,7 @@ $("#login-button").click(function (event) {
       $('form, span, a').fadeOut(500);
       $('.wrapper').addClass('form-success-login');
       $('.form-success-login h1').html("登录成功！" + "<span>3</span>s后跳转");
-      const username = data.username;
+      const username = data.userName;
       localStorage.setItem('username', username);
       setInterval(delayURL, 1000);
     }

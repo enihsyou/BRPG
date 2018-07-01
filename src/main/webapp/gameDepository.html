@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>游戏仓库</title>
-    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="js/script.js"></script>-->
     <script type="text/javascript" src="js/page.js"></script>
-    <script src="http://mockjs.com/dist/mock.js"></script>
     <link rel="stylesheet" type="text/css" href="css/gamewarehouse.css"/>
     <link rel="stylesheet" type="text/css" href="css/page.css"/>
     <link rel="stylesheet" type="text/css" href="css/grade.css"/>
@@ -15,141 +14,150 @@
 </head>
 
 <body>
-    <div id="page1">
-        <script>
-            $("#page1").load("header.html");
-        </script>
-    </div>
-    <div id="page2" style="height:1500px;">
-        <div id="cen_right_top" class="btndiv">
-            <h3 class="active">默认</h3>
-            <h3>按评分</h3>
-            <div class="btndiv2" id="dbody0" style="display:block">
-            </div>
 
-            <div class="btndiv2" id="dbody">
-            </div>
-            <ul class="page" id="page" style="padding-left: 150px;"></ul>
-        </div>
+<div id="page1">
+
+    <!--由脚本填充-->
+
+</div>
+
+<div id="page2" style="height:1500px;">
+    <div id="cen_right_top" class="btndiv">
+        <h3 id="switch_panel_normal" class="active">默认排序</h3>
+        <h3 id="switch_panel_score">按评分排序</h3>
+
+        <div class="btndiv2" id="dbody_normal" style="display: block;"></div>
+        <div class="btndiv2" id="dbody_score"></div>
+
+        <ul class="page" id="page" style="padding-left: 150px;"></ul>
     </div>
-    <div id="page3">
-        <script>
-            $("#page3").load("footer.html");
-        </script>
-    </div>
-</body>
-<script type="text/javascript">
-    let options = {};
-    $(function () {
+
+</div>
+
+<div id="page3">
+
+    <!--由脚本填充-->
+
+</div>
+
+<script>
+// load html template
+$("#page1").load("header.html");
+$("#page3").load("footer.html");
+
+const switchPanelNormal = $('#switch_panel_normal')
+const switchPanelScore = $('#switch_panel_score')
+
+const normalPanel = $("#dbody_normal")
+const scorePanel = $("#dbody_score")
+
+let options = {}
+
+function showLoadingMessage() {
+    $("#list").html('加载中...'); // fixme 页面中没有#list
+}
+
+function showErrorMessage(error) {
+    console.error(error)
+    alert("error");
+}
+
+function titleClickCallback(index, item) {
+    $(`#game-detail0${item.gameID} button`).click(function (event) {
+        event.preventDefault();
         $.ajax({
-            url: 'http://localhost:8080/brpg/game',
-            type: 'GET',
-            data: {method: "getGameList"},
-            dataType: 'json',
-            timeout: 1000,
-            beforeSend: function () {
-                $("#list").html('加载中...');
+            url: '/brpg/game',
+            type: 'POST',
+            data: {
+                method: "toGameInfo",
+                gameID: item.gameID
             },
-            error: function () {
-                alert("error");
-            },
+            timeout: 3000,
             success: function (data) {
-                const dbody0 = $("#dbody0");
-                const json = data;
-                options = {
-                    "id": "page",//显示页码的元素
-                    "data": json,//显示数据
-                    "maxshowpageitem": 3,//最多显示的页码个数
-                    "pagelistcount": 5,//每页显示数据个数
-                    "callBack": function (list) {
-                        console.log(list);
-                        let cHtml = "";
-                        $.each(list, function (n, item) {
-                            cHtml += "<dl><dt>" + item.gameName + '<span>' + "评分：" + item.averageScore + "分" + '</span>' + "</dt>";//处理数据
-                            cHtml += '<dd class="dd0"><img src=' + item.image + '>' + '</dd>';
-                            cHtml += '<dd class="dd2" id="game-detail0' + item.gameID + '"><button>查看详情</button></dd></dl>';
-                        });
-                        dbody0.html(cHtml);//将数据增加到页面中
-
-                        $.each(list, function (n, item) {
-                            $('#game-detail0' + item.gameID + ' button').click(function (event) {
-                                event.preventDefault();
-                                $.ajax({
-                                    url: 'http://localhost:8080/brpg/game',
-                                    type: 'POST',
-                                    data: {method: "toGameInfo", gameID: item.gameID},
-                                    timeout: 3000,
-                                    success: function (data) {
-                                        console.log(data);
-                                        if (data === '1')
-                                            window.location.href = "http://localhost:8080/brpg/gameDetail.html";
-                                        else alert("请求失败");
-                                    }
-                                })
-                            })
-                        })
-                    }
-                };
-                page.init(json.length, 1, options);
+                console.log(data);
+                if (data === '0') {
+                    alert("请求失败");
+                    return
+                }
+                window.location.href = "gameDetail.html";
             }
-        });
-
-
-    });
-
-    $(function () {
-        $.ajax({
-            url: 'http://localhost:8080/brpg/game',
-            type: 'GET',
-            data: {method: "getGameListByOrder"},
-            dataType: 'json',
-            timeout: 1000,
-            beforeSend: function () {
-                $("#list").html('加载中...');
-            },
-            error: function () {
-                alert("error");
-            },
-            success: function (data) {
-                const dbody = $("#dbody");
-                const json = data;
-                options = {
-                    "id": "page",//显示页码的元素
-                    "data": json,//显示数据
-                    "maxshowpageitem": 3,//最多显示的页码个数
-                    "pagelistcount": 5,//每页显示数据个数
-                    "callBack": function (list) {
-                        console.log(list);
-                        let cHtml = "";
-                        $.each(list, function (n, item) {
-                            cHtml += "<dl><dt>" + item.gameName + '<span>' + "评分：" + item.averageScore + "分" + '</span>' + "</dt>";//处理数据
-                            cHtml += '<dd class="dd0"><img src=' + item.image + '>' + '</dd>';
-                            cHtml += '<dd class="dd2" id="game-detail0' + item.gameID + '"><button>查看详情</button></dd></dl>';
-                        });
-                        dbody.html(cHtml);//将数据增加到页面中
-
-                        $.each(list, function (n, item) {
-                            $('#game-detail0' + item.gameID + ' button').click(function (event) {
-                                event.preventDefault();
-                                $.ajax({
-                                    url: 'http://localhost:8080/brpg/game',
-                                    type: 'POST',
-                                    data: {method: "toGameInfo", gameID: item.gameID},
-                                    timeout: 3000,
-                                    success: function (data) {
-                                        console.log(data);
-                                        if (data === '1')
-                                            window.location.href = "http://localhost:8080/brpg/gameDetail.html";
-                                        else alert("请求失败");
-                                    }
-                                })
-                            })
-                        })
-                    }
-                };
-                page.init(json.length, 1, options);
-            }
-        });
+        })
     })
+}
+
+function successCallback(container) {
+    // https://stackoverflow.com/a/39065147
+    const Item = ({ gameName, averageScore, image, gameID }) => `
+<dl>
+    <dt>${gameName}<span>评分：${averageScore}分</span></dt>
+    <dd class="dd0">
+        <img src="${image}">
+    </dd>
+    <dd class="dd2" id="game-detail0${gameID}">
+        <button>查看详情</button>
+    </dd>
+</dl>
+`;
+
+    return function (data) {
+        options = {
+            "id": "page",//显示页码的元素
+            "data": data,//显示数据
+            "maxshowpageitem": 3,//最多显示的页码个数
+            "pagelistcount": 5,//每页显示数据个数
+            "callBack": function (list) {
+                console.log(list);
+                container.html(list.map(Item).join('')) //将数据增加到页面中
+                $.each(list, titleClickCallback)
+            }
+        };
+
+        page.init(data.length, 1, options);
+    }
+}
+
+/**默认排序按钮的点击回调*/
+switchPanelNormal.click(function () {
+    switchPanelNormal.addClass('active')
+    switchPanelScore.removeClass('active')
+    normalPanel.show()
+    scorePanel.hide()
+
+    $.ajax({
+        url: '/brpg/game',
+        type: 'GET',
+        data: { method: "getGameList" },
+        dataType: 'json',
+        timeout: 1000,
+        beforeSend: showLoadingMessage,
+        error: showErrorMessage,
+        success: successCallback(normalPanel)
+    });
+})
+
+/**按评分排序按钮的点击回调*/
+switchPanelScore.click(function () {
+    switchPanelNormal.removeClass('active')
+    switchPanelScore.addClass('active')
+    normalPanel.hide()
+    scorePanel.show()
+
+    $.ajax({
+        url: '/brpg/game',
+        type: 'GET',
+        data: { method: "getGameListByOrder" },
+        dataType: 'json',
+        timeout: 1000,
+        beforeSend: showLoadingMessage,
+        error: showErrorMessage,
+        success: successCallback(scorePanel)
+    });
+})
+
+/**在页面载入完之后模拟默认按钮的点击*/
+$(document).ready(function () {
+    switchPanelNormal.trigger("click");
+});
 </script>
+</body>
 </html>

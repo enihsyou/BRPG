@@ -107,7 +107,7 @@
                 $('.wrapper').addClass('form-success-signup');
                 $('.form-success-signup h1').html('注册成功！' + '<span>3</span>s后跳转');
 
-                const username = data.username;
+                const username = data.userName;
                 localStorage.setItem('username', username);
                 setInterval(delayURL, 1000)
             },

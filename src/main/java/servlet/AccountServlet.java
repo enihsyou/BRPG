@@ -1,22 +1,17 @@
 package servlet;
 
-import com.google.gson.Gson;
 import dao.AccountDao;
 import javabean.User;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 处理用户账户有关的请求，需要传入method参数执行对应的方法
  */
 @WebServlet(name = "account", urlPatterns = "/account")
 public class AccountServlet extends BaseServlet {
-
-    private final Gson gson = new Gson();
 
     /**
      * 用户登录,method=login
@@ -32,14 +27,11 @@ public class AccountServlet extends BaseServlet {
         if (user.login(userID, password)) {
             //登录成功,将user存入session
             req.getSession().setAttribute("user", user);
-            res.setContentType("application/json");
-            Map<String, String> dto = new HashMap<>();
-            dto.put("username", user.getUserName());
-            final String s = gson.toJson(dto);
-            res.getWriter().write(s);
+            final String s = gson.toJson(user);
+            writeJsonToResponse(res, s);
         } else {
             //登录失败
-            res.getWriter().write("0");
+            writeJsonToResponse(res, "0");
         }
     }
 
@@ -58,14 +50,11 @@ public class AccountServlet extends BaseServlet {
         if (user.register(userID, password, userName)) {
             //注册成功
             req.getSession().setAttribute("user", user);
-            res.setContentType("application/json");
-            Map<String, String> dto = new HashMap<>();
-            dto.put("username", user.getUserName());
-            final String s = gson.toJson(dto);
-            res.getWriter().write(s);
+            final String s = gson.toJson(user);
+            writeJsonToResponse(res, s);
         } else {
             //注册失败
-            res.getWriter().write("0");
+            writeJsonToResponse(res, "0");
         }
     }
 
@@ -85,6 +74,7 @@ public class AccountServlet extends BaseServlet {
             req.getSession().setAttribute("user", user);
         } else {
             //修改失败
+            writeJsonToResponse(res, "0");
         }
     }
 
@@ -103,6 +93,7 @@ public class AccountServlet extends BaseServlet {
             req.getSession().setAttribute("user", user);
         } else {
             //修改失败
+            writeJsonToResponse(res, "0");
         }
     }
 
@@ -119,10 +110,10 @@ public class AccountServlet extends BaseServlet {
         AccountDao dao = new AccountDao();
         if (dao.setCollection(user.getUserID(), gameID)) {
             //收藏成功
-            res.getWriter().write("1");
+            writeJsonToResponse(res, "1");
         } else {
             //收藏失败
-            res.getWriter().write("0");
+            writeJsonToResponse(res, "0");
         }
     }
 }

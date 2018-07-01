@@ -36,3 +36,5 @@ gen
 .gradle
 build
 test
+
+node_modules/

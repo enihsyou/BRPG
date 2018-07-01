@@ -1,27 +1,32 @@
-.page{
+.page {
     list-style: none;
 }
-.page>li{
+
+.page > li {
     float: left;
     padding: 5px 10px;
     cursor: pointer;
 }
-.page .pageItem{
+
+.page .pageItem {
     border: solid thin #DDDDDD;
     margin: 5px;
 }
-.page .pageItemActive{
+
+.page .pageItemActive {
     border: solid thin #0099FF;
     margin: 5px;
     background-color: #0099FF;
-    color:white;
+    color: white;
 }
-.page .pageItem:hover{
+
+.page .pageItem:hover {
     border: solid thin #0099FF;
     background-color: #0099FF;
-    color:white;
+    color: white;
 }
-.page .pageItemDisable{
+
+.page .pageItemDisable {
     border: solid thin #DDDDDD;
     margin: 5px;
     background-color: #DDDDDD;

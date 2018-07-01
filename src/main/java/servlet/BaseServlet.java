@@ -1,16 +1,30 @@
 package servlet;
 
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.ServletResponseWrapper;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
 public class BaseServlet extends HttpServlet {
+
+    protected final Gson gson = new Gson();
+
+    protected static void writeJsonToResponse(HttpServletResponse response, String jsonString) {
+        try (PrintWriter writer = response.getWriter()) {
+            response.setContentType("application/json;charset=utf-8");
+            writer.write(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         try {
@@ -26,4 +40,5 @@ public class BaseServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }
